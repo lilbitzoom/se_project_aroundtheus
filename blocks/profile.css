@@ -1,0 +1,125 @@
+.profile {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  margin: auto;
+}
+
+.profile__content {
+  padding-left: 26px;
+  padding-right: 18px;
+}
+
+.profile__photo {
+  border-radius: 100%;
+  object-fit: cover;
+  max-width: 120px;
+  max-height: 120px;
+}
+
+.profile__title {
+  display: flex;
+  align-items: center;
+}
+
+.profile__title_line {
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 1.14;
+  margin: 0;
+  max-width: 373px;
+  display: flex;
+  align-self: center;
+  text-overflow: ellipsis;
+  padding-right: 18px;
+}
+
+.profile__subheader {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.22;
+  margin: 0;
+  display: flex;
+  flex: 1;
+  padding-top: 16px;
+}
+
+.profile__edit_button {
+  width: 24px;
+  height: 24px;
+  background: url(../images/edit.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 10px;
+  border: 1px solid #ffffff;
+  display: flex;
+  flex: 0;
+}
+
+.profile__edit_button:hover {
+  opacity: 0.6;
+}
+
+.profile__add_button {
+  width: 150px;
+  height: 50px;
+  background-color: #000;
+  border: 2px solid #fff;
+  background: url(../images/cross.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 22px;
+  margin-left: 165px;
+}
+
+.profile__add_button:hover {
+  opacity: 0.6;
+}
+
+@media screen and (min-width: 596px) and (max-width: 896px) {
+  .profile__add_button {
+  }
+}
+
+@media screen and (max-width: 596px) {
+  .profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .profile__photo {
+    margin: auto;
+    margin-top: 38px;
+  }
+
+  .profile__title {
+    display: flex;
+    justify-content: center;
+    padding-top: 26px;
+  }
+
+  .profile__title_line {
+    font-size: 22px;
+  }
+
+  .profile__subheader {
+    font-size: 14px;
+    margin: auto;
+    padding-top: 14px;
+    padding-bottom: 36px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .profile__edit_button {
+    width: 18px;
+    height: 18px;
+    background-size: 7.5px;
+  }
+
+  .profile__add_button {
+    margin: auto;
+    margin-bottom: 36px;
+  }
+}
