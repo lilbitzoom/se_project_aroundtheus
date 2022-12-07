@@ -26,6 +26,7 @@
 }
 
 .profile__name {
+  font-family: "Inter", "Arial", sans-serif;
   font-weight: 500;
   font-size: 42px;
   line-height: 1.14;
@@ -38,6 +39,7 @@
 }
 
 .profile__subheader {
+  font-family: "Inter Light", "Arial", sans-serif;
   font-weight: 400;
   font-size: 18px;
   line-height: 1.22;

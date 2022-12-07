@@ -1,7 +1,17 @@
 @font-face {
   font-family: "Inter";
-  src: url("../fonts/Inter-3.19/Inter_Web/Inter-Regular.woff2?v=3.19")
-      format("woff2"),
-    url("../fonts/Inter-3.19/Inter_Web/Inter-Regular.woff?v=3.19")
-      format("woff");
+  src: url("../fonts/Inter-3.19/Inter_Web/Inter-Regular.woff2") format("woff2"),
+    url("../fonts/Inter-3.19/Inter_Web/Inter-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Inter Light";
+  src: url("../fonts/Inter-3.19/Inter_Web/Inter-Light.woff2") format("woff2"),
+    url("../fonts/Inter-3.19/Inter_Web/Inter-Light.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Inter Bold";
+  src: url("../fonts/Inter-3.19/Inter_Web/Inter-Bold.woff2") format("woff2"),
+    url("../fonts/Inter-3.19/Inter_Web/Inter-Bold.woff") format("woff");
 }
