@@ -18,11 +18,14 @@ This project is made so all the elements are displayed correctly on popular scre
 **Images**
 
 The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster.
+[![Alt text] (https://github.com/lilbitzoom/se_project_aroundtheus)]
 
 **GitHub**
 
 - [Link] (https://github.com/lilbitzoom/se_project_aroundtheus)
 
 **Description**
+
+A website created from referencing Figma project above. The website is responsive to different screen sizes. HTML and CSS with BEM methodology were used in creating this website. 
 
 Good luck and have fun!
