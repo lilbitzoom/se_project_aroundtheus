@@ -23,6 +23,7 @@ In the link are two images showing the website on a screen size of 1280px and 32
 **GitHub**
 
 - [Link] (https://github.com/lilbitzoom/se_project_aroundtheus)
+- [Live website] (https://lilbitzoom.github.io/se_project_aroundtheus/)
 
 **Description**
 
