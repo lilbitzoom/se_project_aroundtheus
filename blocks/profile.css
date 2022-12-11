@@ -98,7 +98,7 @@
 
   .profile__name {
     font-size: 25px;
-    width: fit-content;
+    max-width: 250px;
   }
   .profile__description {
     padding-left: 0;
@@ -106,6 +106,7 @@
   .profile__subheader {
     font-size: 15px;
     padding-top: 15px;
+    max-width: 250px;
   }
 
   .profile__edit-button {
@@ -134,6 +135,7 @@
 
   .profile__description {
     padding: 0;
+    max-width: 282px;
   }
 
   .profile__title {
@@ -143,6 +145,7 @@
 
   .profile__name {
     font-size: 22px;
+    max-width: 282px;
   }
 
   .profile__subheader {
@@ -150,7 +153,7 @@
     margin: auto;
     padding-top: 14px;
     padding-bottom: 36px;
-    justify-content: center;
+    max-width: 282px;
   }
 
   .profile__edit-button {
