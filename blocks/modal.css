@@ -3,6 +3,7 @@
   top: 190px;
   right: 425px;
   display: none;
+  transition: 1s ease-in-out;
 }
 
 .modal_opened {
