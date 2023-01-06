@@ -5,14 +5,14 @@ const profileTitle = profileContainer.querySelector('.profile__title');
 
 const profileEditButton = profileTitle.querySelector('.profile__edit-button');
 const modal = document.querySelector('.modal');
-const modalform = modal.querySelector('.modal__container');
+const profileEditForm = modal.querySelector('.modal__form');
 const profileCloseButton = modal.querySelector('.modal__close-button');
 const profileSaveButton = modal.querySelector('.modal__save-button');
 let profileName = profileTitle.querySelector('.profile__name');
 let profileJob = profileContainer.querySelector('.profile__subheader');
 
-let inputName = modalform.querySelector('.modal__input_text_name');
-let inputDescription = modalform.querySelector(
+let inputName = profileEditForm.querySelector('.modal__input_text_name');
+let inputDescription = profileEditForm.querySelector(
   '.modal__input-text_description'
 );
 
@@ -40,12 +40,11 @@ function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = inputName.value;
   profileJob.textContent = inputDescription.value;
-  console.log('i work');
 }
 
-profileSaveButton.addEventListener('submit', function (evt) {
+profileEditForm.addEventListener('submit', function (evt) {
   handleProfileFormSubmit(evt);
-  console.log('i works');
+  removeModalOpened(modal);
 });
 
 //Form reflects profile webpage
