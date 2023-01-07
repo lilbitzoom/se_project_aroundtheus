@@ -1,4 +1,4 @@
-// Const & Let
+//Variable Declarations
 
 const profileContainer = document.querySelector('.profile__description');
 const profileTitle = profileContainer.querySelector('.profile__title');
@@ -16,25 +16,25 @@ let inputDescription = profileEditForm.querySelector(
   '.modal__input-text_description'
 );
 
-//Open edit profile
-function addModalOpened(modal) {
+//Function to open edit profile button
+function openModal(modal) {
   modal.classList.add('modal_opened');
 }
 
 profileEditButton.addEventListener('click', function () {
-  addModalOpened(modal);
+  openModal(modal);
 });
 
-//Close edit profile
-function removeModalOpened(modal) {
+//Function to close edit profile with 'X' button
+function closeModal(modal) {
   modal.classList.remove('modal_opened');
 }
 
 profileCloseButton.addEventListener('click', function () {
-  removeModalOpened(modal);
+  closeModal(modal);
 });
 
-//Edit profile title & subheader
+//Function to edit the title and subheader in the profile
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
@@ -44,7 +44,7 @@ function handleProfileFormSubmit(evt) {
 
 profileEditForm.addEventListener('submit', function (evt) {
   handleProfileFormSubmit(evt);
-  removeModalOpened(modal);
+  closeModal(modal);
 });
 
 //Form reflects profile webpage
@@ -52,7 +52,4 @@ profileEditForm.addEventListener('submit', function (evt) {
 function reflectNameDescription() {
   inputName.value = profileName.textContent;
   inputDescription.value = profileJob.textContent;
-  removeModalOpened(modal);
 }
-
-reflectNameDescription();

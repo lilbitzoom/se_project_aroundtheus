@@ -24,25 +24,24 @@ const initialCards = [
     link: 'https://images.unsplash.com/photo-1670349928042-519fee6e11de?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=770&q=80',
   },
 ];
+//Variable Declarations
 
 const cardListEl = document.querySelector('.cards__list');
 const initialCardsLength = initialCards.length;
+const cardTemplate = document.querySelector('#card').content;
 
+//Fucntion to present cards based off of initialCards array
 function getCardElement(cardData) {
-  const cardTemplate = document.querySelector('#card').content;
-  let cardElement = cardTemplate.querySelector('.card').cloneNode(true);
+  const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
   const cardImageEL = cardElement.querySelector('.card__image');
-  const cardAltEl = cardElement.querySelector('.card__image');
   const cardTitleEl = cardElement.querySelector('.card__title');
   cardImageEL.src = cardData.link;
-  cardAltEl.alt = cardData.name;
+  cardImageEL.alt = cardData.name;
   cardTitleEl.textContent = cardData.name;
   return cardElement;
 }
 
 initialCards.forEach((cardData) => {
-  let cardElement = getCardElement(cardData);
+  cardElement = getCardElement(cardData);
   cardListEl.prepend(cardElement);
 });
-
-for (let i = 0; i < initialCardsLength; i++) {}
