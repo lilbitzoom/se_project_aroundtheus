@@ -22,6 +22,7 @@ function openModal(modal) {
 }
 
 profileEditButton.addEventListener('click', function () {
+  fillProfileForm();
   openModal(modal);
 });
 
@@ -49,7 +50,7 @@ profileEditForm.addEventListener('submit', function (evt) {
 
 //Form reflects profile webpage
 
-function reflectNameDescription() {
+function fillProfileForm() {
   inputName.value = profileName.textContent;
   inputDescription.value = profileJob.textContent;
 }
