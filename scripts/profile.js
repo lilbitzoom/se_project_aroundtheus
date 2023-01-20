@@ -4,10 +4,10 @@ const profileContainer = document.querySelector('.profile__description');
 const profileTitle = profileContainer.querySelector('.profile__title');
 
 const profileEditButton = profileTitle.querySelector('.profile__edit-button');
-const modal = document.querySelector('.modal');
-const profileEditForm = modal.querySelector('.modal__form');
-const profileCloseButton = modal.querySelector('.modal__close-button');
-const profileSaveButton = modal.querySelector('.modal__save-button');
+const modalProfile = document.querySelector('.modal__edit_profile');
+const profileEditForm = modalProfile.querySelector('.modal__form');
+const profileCloseButton = modalProfile.querySelector('.modal__close-button');
+const profileSaveButton = modalProfile.querySelector('.modal__save-button');
 const profileName = profileTitle.querySelector('.profile__name');
 const profileJob = profileContainer.querySelector('.profile__subheader');
 
@@ -17,22 +17,22 @@ const inputDescription = profileEditForm.querySelector(
 );
 
 //Function to open edit profile button
-function openModal(modal) {
-  modal.classList.add('modal_opened');
+function openModalProfile(modalProfile) {
+  modalProfile.classList.add('modal_opened');
 }
 
-profileEditButton.addEventListener('click', function () {
+profileEditButton.addEventListener('click', () => {
   fillProfileForm();
-  openModal(modal);
+  openModalProfile(modalProfile);
 });
 
 //Function to close edit profile with 'X' button
-function closeModal(modal) {
-  modal.classList.remove('modal_opened');
+function closeModal(modalProfile) {
+  modalProfile.classList.remove('modal_opened');
 }
 
-profileCloseButton.addEventListener('click', function () {
-  closeModal(modal);
+profileCloseButton.addEventListener('click', () => {
+  closeModal(modalProfile);
 });
 
 //Function to edit the title and subheader in the profile
@@ -43,9 +43,9 @@ function handleProfileFormSubmit(evt) {
   profileJob.textContent = inputDescription.value;
 }
 
-profileEditForm.addEventListener('submit', function (evt) {
+profileEditForm.addEventListener('submit', (evt) => {
   handleProfileFormSubmit(evt);
-  closeModal(modal);
+  closeModal(modalProfile);
 });
 
 //Form reflects profile webpage

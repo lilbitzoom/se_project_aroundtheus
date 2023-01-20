@@ -3,12 +3,31 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .card__image {
+  object-fit: cover;
   height: 282px;
   max-width: 282px;
-  object-fit: cover;
+  position: relative;
+}
+
+.card__delete-button {
+  height: 19px;
+  width: 18px;
+  border: none;
+  padding: 0;
+  margin: 0;
+  background: url('../images/Trash.svg') center no-repeat;
+  position: absolute;
+  top: 18px;
+  right: 15px;
+}
+
+.card__delete-button:hover {
+  opacity: 0.6;
+  cursor: pointer;
 }
 
 .card__content {
@@ -42,6 +61,10 @@
   margin: 0;
   transition: 0.3s;
   background: transparent url('../images/card-icon.svg') center no-repeat;
+}
+
+.like-button__selected {
+  background: transparent url('../images/selected-like.png') center no-repeat;
 }
 
 .card__like-button:hover {

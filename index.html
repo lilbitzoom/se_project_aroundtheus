@@ -46,7 +46,7 @@
       <p class="footer__content">Ⓒ 2022 Around The U.S.</p>
     </footer>
 
-    <div class="modal">
+    <div class="modal modal__edit_profile">
       <div class="modal__container">
         <form class="modal__form">
           <button class="modal__close-button" type="button"></button>
@@ -69,9 +69,44 @@
         </form>
       </div>
     </div>
+    <div class="modal modal__add_card">
+      <div class="modal__container">
+        <form class="modal__form">
+          <button class="modal__close-button" type="button"></button>
+          <h3 class="modal__title">New Place</h3>
+          <input
+            class="modal__input modal__input_text_name"
+            type="text"
+            id="title"
+            placeholder="Title"
+            required
+          />
+          <input
+            class="modal__input modal__input-text_description"
+            type="text"
+            id="link"
+            placeholder="Image URL"
+            required
+          />
+          <button class="modal__save-button" type="submit">Create</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal modal__view-image">
+      <div class="modal__image_container">
+        <button class="modal__image_close-button" type="button"></button>
+        <div class="modal__image_content">
+          <img class="modal__image" src="" alt="" />
+          <p class="image__title"></p>
+        </div>
+      </div>
+    </div>
+
     <template id="card">
       <li class="card">
         <img class="card__image" src="" alt="" />
+        <button class="card__delete-button"></button>
         <div class="card__content">
           <h2 class="card__title"></h2>
           <button class="card__like-button" type="button"></button>
