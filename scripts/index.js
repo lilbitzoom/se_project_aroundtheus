@@ -31,12 +31,12 @@ const initialCardsLength = initialCards.length;
 const cardTemplate = document.querySelector('#card').content;
 
 const profileAddButton = document.querySelector('.profile__add-button');
-const modalCard = document.querySelector('.modal__add_card');
+const modalCard = document.querySelector('.modal__new_card-addition');
 const cardCloseButton = modalCard.querySelector('.modal__close-button');
 const cardSaveButton = modalCard.querySelector('.modal__save-button');
 const cardAddForm = modalCard.querySelector('.modal__form');
-const modalImage = document.querySelector('.modal__view-image');
-const imageCloseButton = document.querySelector('.modal__image_close-button');
+const modalImage = document.querySelector('.modal__image_pop-up');
+const imageCloseButton = document.querySelector('.modal__image-close-button');
 
 //Function to present cards based off of initialCards array
 function getCardElement(cardData) {
@@ -108,7 +108,7 @@ initialCards.forEach((cardData) => {
 //retreive data from InitialCard for image & title in image modal
 const handlePreviewPicture = (cardData) => {
   const modalImageEL = modalImage.querySelector('.modal__image');
-  const modalTitleEL = modalImage.querySelector('.image__title');
+  const modalTitleEL = modalImage.querySelector('.modal__image_title');
   modalImageEL.src = cardData.link;
   modalImageEL.alt = cardData.name;
   modalTitleEL.textContent = cardData.name;

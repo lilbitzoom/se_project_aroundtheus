@@ -4,7 +4,7 @@ const profileContainer = document.querySelector('.profile__description');
 const profileTitle = profileContainer.querySelector('.profile__title');
 
 const profileEditButton = profileTitle.querySelector('.profile__edit-button');
-const modalProfile = document.querySelector('.modal__edit_profile');
+const modalProfile = document.querySelector('.modal__profile-editor');
 const profileEditForm = modalProfile.querySelector('.modal__form');
 const profileCloseButton = modalProfile.querySelector('.modal__close-button');
 const profileSaveButton = modalProfile.querySelector('.modal__save-button');
