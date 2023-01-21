@@ -1,20 +1,17 @@
 //Variable Declarations
-
+const modalProfile = document.querySelector('#profile-editor');
 const profileContainer = document.querySelector('.profile__description');
 const profileTitle = profileContainer.querySelector('.profile__title');
 
 const profileEditButton = profileTitle.querySelector('.profile__edit-button');
-const modalProfile = document.querySelector('.modal__profile-editor');
 const profileEditForm = modalProfile.querySelector('.modal__form');
 const profileCloseButton = modalProfile.querySelector('.modal__close-button');
 const profileSaveButton = modalProfile.querySelector('.modal__save-button');
 const profileName = profileTitle.querySelector('.profile__name');
 const profileJob = profileContainer.querySelector('.profile__subheader');
 
-const inputName = profileEditForm.querySelector('.modal__input_text_name');
-const inputDescription = profileEditForm.querySelector(
-  '.modal__input-text_description'
-);
+const inputName = profileEditForm.querySelector('#name');
+const inputDescription = profileEditForm.querySelector('#description');
 
 //Function to open edit profile button
 function openModalProfile(modalProfile) {
