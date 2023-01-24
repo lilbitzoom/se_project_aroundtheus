@@ -5,7 +5,9 @@ const profileTitle = profileContainer.querySelector('.profile__title');
 
 const profileEditButton = profileTitle.querySelector('.profile__edit-button');
 const profileEditForm = modalProfile.querySelector('.modal__form');
-const profileCloseButton = modalProfile.querySelector('.modal__close-button');
+const profileCloseButton = modalProfile.querySelector(
+  '#profile-editor_close_button'
+);
 const profileSaveButton = modalProfile.querySelector('.modal__save-button');
 const profileName = profileTitle.querySelector('.profile__name');
 const profileJob = profileContainer.querySelector('.profile__subheader');
@@ -14,18 +16,18 @@ const inputName = profileEditForm.querySelector('#name');
 const inputDescription = profileEditForm.querySelector('#description');
 
 //Function to open edit profile button
-function openModalProfile(modalProfile) {
-  modalProfile.classList.add('modal_opened');
+function openModal(modal) {
+  modal.classList.add('modal_opened');
 }
 
 profileEditButton.addEventListener('click', () => {
   fillProfileForm();
-  openModalProfile(modalProfile);
+  openModal(modalProfile);
 });
 
 //Function to close edit profile with 'X' button
-function closeModal(modalProfile) {
-  modalProfile.classList.remove('modal_opened');
+function closeModal(modal) {
+  modal.classList.remove('modal_opened');
 }
 
 profileCloseButton.addEventListener('click', () => {

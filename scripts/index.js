@@ -32,11 +32,11 @@ const cardTemplate = document.querySelector('#card').content;
 
 const profileAddButton = document.querySelector('.profile__add-button');
 const modalCard = document.querySelector('#new_card');
-const cardCloseButton = modalCard.querySelector('.modal__close-button');
+const cardCloseButton = modalCard.querySelector('#new_card_close_button');
 const cardSaveButton = modalCard.querySelector('.modal__save-button');
 const cardAddForm = modalCard.querySelector('.modal__form');
 const modalImage = document.querySelector('#image_pop-up');
-const imageCloseButton = document.querySelector('.modal__image-close-button');
+const imageCloseButton = document.querySelector('#image_pop-up_close_button');
 
 //Function to present cards based off of initialCards array
 function getCardElement(cardData) {
@@ -65,20 +65,25 @@ function getCardElement(cardData) {
   return cardElement;
 }
 
-//Function to open add new card form
-function openModalCard(modalCard) {
-  modalCard.classList.add('modal_opened');
+//Universal open and close modal function
+function openModal(modal) {
+  modal.classList.add('modal_opened');
 }
 
-profileAddButton.addEventListener('click', () => {
-  openModalCard(modalCard);
-});
+function closeModal(modal) {
+  modal.classList.remove('modal_opened');
+}
 
-//Function to close add new card with 'X' button
+//Function to open & close add new card form
+profileAddButton.addEventListener('click', () => {
+  openModal(modalCard);
+});
 
 cardCloseButton.addEventListener('click', () => {
   closeModal(modalCard);
 });
+
+//Function to close add new card with 'X' button
 
 imageCloseButton.addEventListener('click', () => {
   closeModal(modalImage);
@@ -95,6 +100,7 @@ cardAddForm.addEventListener('submit', (e) => {
   });
   closeModal(modalCard);
   renderCard(cardView, cardListEl);
+  cardAddForm.reset();
 });
 
 function renderCard(cardElement, container) {
@@ -113,5 +119,5 @@ const handlePreviewPicture = (cardData) => {
   modalImageEL.alt = cardData.name;
   modalTitleEL.textContent = cardData.name;
 
-  modalImage.classList.add('modal_opened');
+  openModal(modalImage);
 };

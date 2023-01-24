@@ -66,9 +66,9 @@
   height: 36px;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-  padding: 5px 10px;
+  padding: 5px 0;
   outline: none;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
@@ -90,7 +90,7 @@
   color: #fff;
   width: 358px;
   height: 50px;
-  margin-top: 10px;
+  margin-top: 20px;
   margin-bottom: 36px;
   font-family: 'Inter';
   font-style: normal;
