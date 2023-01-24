@@ -16,9 +16,6 @@ const inputName = profileEditForm.querySelector('#name');
 const inputDescription = profileEditForm.querySelector('#description');
 
 //Function to open edit profile button
-function openModal(modal) {
-  modal.classList.add('modal_opened');
-}
 
 profileEditButton.addEventListener('click', () => {
   fillProfileForm();
@@ -26,9 +23,6 @@ profileEditButton.addEventListener('click', () => {
 });
 
 //Function to close edit profile with 'X' button
-function closeModal(modal) {
-  modal.classList.remove('modal_opened');
-}
 
 profileCloseButton.addEventListener('click', () => {
   closeModal(modalProfile);

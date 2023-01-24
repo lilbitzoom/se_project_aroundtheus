@@ -11,6 +11,7 @@
   height: 282px;
   max-width: 282px;
   position: relative;
+  cursor: pointer;
 }
 
 .card__delete-button {
