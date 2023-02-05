@@ -165,7 +165,7 @@
   cursor: pointer;
 }
 
-.modal__input_type_error {
+.modal__input_error {
   font-size: 12px;
   line-height: 15px;
   color: #ff0000;
