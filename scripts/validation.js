@@ -76,7 +76,7 @@ const config = {
   inputSelector: '.modal__input',
   submitButtonSelector: '.modal__submit-button',
   inactiveButtonClass: 'modal__submit-button_inactive',
-  inputErrorClass: 'modal__input_type_error',
+  inputErrorClass: 'modal__input-error',
   errorClass: 'modal__error_visible',
 };
 
