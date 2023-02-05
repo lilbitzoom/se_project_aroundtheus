@@ -6,7 +6,16 @@
   transition: ease-in-out 0.4s;
   width: 100%;
   height: 100%;
+  z-index: 1;
+}
+.overlay {
+  position: fixed;
   background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
 }
 
 .modal_opened {
@@ -25,9 +34,13 @@
   margin: auto;
   margin-top: 200px;
 }
+.modal__label {
+  position: relative;
+}
 
 .modal__form {
   padding-left: 36px;
+  z-index: 1;
 }
 
 .modal__close-button {
@@ -54,7 +67,7 @@
   font-size: 24px;
   line-height: 29px;
   color: #000000;
-  padding: 0 0 35px 0;
+  padding: 0 0 30px 0;
   margin: 0;
   width: 385px;
   display: flex;
@@ -68,7 +81,7 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
   padding: 5px 0;
   outline: none;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
@@ -77,20 +90,23 @@
   color: #000000;
 }
 
+.modal__input:invalid {
+  border-bottom: 1px solid #ff0000;
+}
+
 .modal_divider {
   width: 385px;
   opacity: 0.2;
   border: 1px solid #000000;
 }
 
-.modal__save-button {
+.modal__submit-button {
   background-color: #000000;
   border-radius: 2px;
   border: none;
   color: #fff;
   width: 358px;
   height: 50px;
-  margin-top: 20px;
   margin-bottom: 36px;
   font-family: 'Inter';
   font-style: normal;
@@ -99,9 +115,16 @@
   line-height: 22px;
 }
 
-.modal__save-button:hover {
+.modal__submit-button:hover {
   opacity: 0.6;
   cursor: pointer;
+}
+
+.modal__submit-button_inactive {
+  background-color: #fff;
+  opacity: 0.2;
+  border: 1px solid #000;
+  color: #000;
 }
 
 .modal__image {
@@ -140,6 +163,20 @@
 .modal__image-close-button:hover {
   opacity: 0.6;
   cursor: pointer;
+}
+
+.modal__input_type_error {
+  font-size: 12px;
+  line-height: 15px;
+  color: #ff0000;
+  position: absolute;
+  opacity: 0;
+  left: 0;
+  top: calc(100% + 15px);
+}
+
+.modal__error_visible {
+  opacity: 1;
 }
 
 @media screen and (max-width: 596px) {

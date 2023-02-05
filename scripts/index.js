@@ -26,12 +26,16 @@ const initialCards = [
 ];
 //Variable Declarations
 
+const modalCardOverlay = document.querySelector('#new-card-overlay');
+const modalImageOverlay = document.querySelector('#image_pop-up-overlay');
+const modalProfileOverlay = document.querySelector('#profile-editor-overlay');
+
 const cardListEl = document.querySelector('.cards__list');
 const initialCardsLength = initialCards.length;
 const cardTemplate = document.querySelector('#card').content;
 
 const profileAddButton = document.querySelector('.profile__add-button');
-const modalCard = document.querySelector('#new_card');
+const modalCard = document.querySelector('#new-card');
 const cardCloseButton = modalCard.querySelector('#new_card_close_button');
 const cardSaveButton = modalCard.querySelector('.modal__save-button');
 const cardAddForm = modalCard.querySelector('.modal__form');
@@ -87,6 +91,34 @@ cardCloseButton.addEventListener('click', () => {
 
 imageCloseButton.addEventListener('click', () => {
   closeModal(modalImage);
+});
+
+//Function to close modal with ESC button
+
+function closingWithEscape(evt) {
+  if (evt.keyCode === 27) {
+    closeModal(modalCard);
+    closeModal(modalImage);
+    closeModal(modalProfile);
+  }
+}
+
+document.addEventListener('keydown', closingWithEscape);
+
+//Function to close modal when clicking on overlay
+
+modalCardOverlay.addEventListener('click', () => {
+  closeModal(modalCard);
+});
+
+modalProfileOverlay.addEventListener('click', () => {
+  closeModal(modalProfile);
+  console.log('I work');
+});
+
+modalImageOverlay.addEventListener('click', () => {
+  closeModal(modalImage);
+  console.log('I work');
 });
 
 // Function to add a new card based off of form
