@@ -15,6 +15,8 @@ const profileJob = profileContainer.querySelector('.profile__subheader');
 const inputName = profileEditForm.querySelector('#name');
 const inputDescription = profileEditForm.querySelector('#description');
 
+const modalProfileOverlay = document.querySelector('#profile-editor-overlay');
+
 //Function to open edit profile button
 
 profileEditButton.addEventListener('click', () => {
@@ -22,9 +24,13 @@ profileEditButton.addEventListener('click', () => {
   openModal(modalProfile);
 });
 
-//Function to close edit profile with 'X' button
+//Function to close edit profile with 'X' button & clicking on overlay
 
 profileCloseButton.addEventListener('click', () => {
+  closeModal(modalProfile);
+});
+
+modalProfileOverlay.addEventListener('click', () => {
   closeModal(modalProfile);
 });
 

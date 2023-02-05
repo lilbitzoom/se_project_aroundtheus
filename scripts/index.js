@@ -28,7 +28,6 @@ const initialCards = [
 
 const modalCardOverlay = document.querySelector('#new-card-overlay');
 const modalImageOverlay = document.querySelector('#image_pop-up-overlay');
-const modalProfileOverlay = document.querySelector('#profile-editor-overlay');
 
 const cardListEl = document.querySelector('.cards__list');
 const initialCardsLength = initialCards.length;
@@ -111,14 +110,8 @@ modalCardOverlay.addEventListener('click', () => {
   closeModal(modalCard);
 });
 
-modalProfileOverlay.addEventListener('click', () => {
-  closeModal(modalProfile);
-  console.log('I work');
-});
-
-modalImageOverlay.addEventListener('click', () => {
+modalImage.addEventListener('click', () => {
   closeModal(modalImage);
-  console.log('I work');
 });
 
 // Function to add a new card based off of form
