@@ -31,28 +31,26 @@ function checkInputValidity(formElement, inputElement, options) {
   }
 }
 
+function hasInvalidInput(inputList) {
+  return !inputList.every((inputElement) => inputElement.validity.valid);
+}
+
 function toggleButtonState(
   inputElements,
   submitButton,
   { inactiveButtonClass }
 ) {
-  let foundInvalid = false;
-  inputElements.forEach((inputElement) => {
-    if (!inputElement.validity.valid) {
-      foundInvalid = true;
-    }
-  });
-  if (foundInvalid) {
+  if (hasInvalidInput(inputElements)) {
     submitButton.classList.add(inactiveButtonClass);
-    return (submitButton.disabled = true);
+    submitButton.disabled = true;
+    return;
   }
   submitButton.classList.remove(inactiveButtonClass);
   submitButton.disabled = false;
 }
 
 function setEventListeners(formElement, options) {
-  const { inputSelector } = options;
-  const { submitButtonSelector } = options;
+  const { inputSelector, submitButtonSelector } = options;
   const inputElements = [...formElement.querySelectorAll(inputSelector)];
   const submitButton = formElement.querySelector(submitButtonSelector);
   inputElements.forEach((inputElement) => {

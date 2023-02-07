@@ -71,7 +71,7 @@
   margin: 0;
   width: 385px;
   display: flex;
-  justify-self: flex-start;
+  justify-content: flex-start;
 }
 
 .modal__input {
@@ -90,7 +90,7 @@
   color: #000000;
 }
 
-.modal__input:invalid {
+.modal__input_invalid {
   border-bottom: 1px solid #ff0000;
 }
 
@@ -125,6 +125,11 @@
   opacity: 0.2;
   border: 1px solid #000;
   color: #000;
+}
+
+.modal__submit-button_inactive:hover {
+  opacity: 0.2;
+  cursor: default;
 }
 
 .modal__image {

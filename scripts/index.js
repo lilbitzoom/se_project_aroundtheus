@@ -94,23 +94,22 @@ imageCloseButton.addEventListener('click', () => {
 
 //Function to close modal with ESC button
 
-function closingWithEscape(evt) {
-  if (evt.keyCode === 27) {
-    closeModal(modalCard);
-    closeModal(modalImage);
-    closeModal(modalProfile);
+function closeModalWithEscape(evt) {
+  if (evt.key === 'Escape') {
+    const openedModal = document.querySelector('.modal_opened');
+    closeModal(openedModal);
   }
 }
 
-document.addEventListener('keydown', closingWithEscape);
+document.addEventListener('keydown', closeModalWithEscape);
 
 //Function to close modal when clicking on overlay
 
-modalCardOverlay.addEventListener('click', () => {
+modalCardOverlay.addEventListener('mousedown', () => {
   closeModal(modalCard);
 });
 
-modalImage.addEventListener('click', () => {
+modalImage.addEventListener('mousedown', () => {
   closeModal(modalImage);
 });
 
@@ -125,6 +124,8 @@ cardAddForm.addEventListener('submit', (e) => {
   });
   closeModal(modalCard);
   renderCard(cardView, cardListEl);
+
+  toggleButtonState(inputElements, submitButton, options);
   cardAddForm.reset();
 });
 
