@@ -39,6 +39,7 @@ const cardCloseButton = modalCard.querySelector('#new_card_close_button');
 const cardSaveButton = modalCard.querySelector('.modal__save-button');
 const cardAddForm = modalCard.querySelector('.modal__form');
 const modalImage = document.querySelector('#image_pop-up');
+const NewCardSubmitButton = document.querySelector('#new-card-submit-button');
 const imageCloseButton = document.querySelector('#image_pop-up_close_button');
 
 //Function to present cards based off of initialCards array
@@ -124,9 +125,8 @@ cardAddForm.addEventListener('submit', (e) => {
   });
   closeModal(modalCard);
   renderCard(cardView, cardListEl);
-
-  toggleButtonState(inputElements, submitButton, options);
   cardAddForm.reset();
+  disableSubmitButton(NewCardSubmitButton, config.inactiveButtonClass);
 });
 
 function renderCard(cardElement, container) {
@@ -146,4 +146,13 @@ const handlePreviewPicture = (cardData) => {
   modalTitleEL.textContent = cardData.name;
 
   openModal(modalImage);
+};
+
+const config = {
+  formSelector: '.modal__form',
+  inputSelector: '.modal__input',
+  submitButtonSelector: '.modal__submit-button',
+  inactiveButtonClass: 'modal__submit-button_inactive',
+  inputErrorClass: 'modal__input-error',
+  errorClass: 'modal__error_visible',
 };
