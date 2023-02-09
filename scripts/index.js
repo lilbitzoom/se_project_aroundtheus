@@ -39,7 +39,7 @@ const cardCloseButton = modalCard.querySelector('#new_card_close_button');
 const cardSaveButton = modalCard.querySelector('.modal__save-button');
 const cardAddForm = modalCard.querySelector('.modal__form');
 const modalImage = document.querySelector('#image_pop-up');
-const NewCardSubmitButton = document.querySelector('#new-card-submit-button');
+const newCardSubmitButton = document.querySelector('#new-card-submit-button');
 const imageCloseButton = document.querySelector('#image_pop-up_close_button');
 
 //Function to present cards based off of initialCards array
@@ -72,10 +72,12 @@ function getCardElement(cardData) {
 //Universal open and close modal function
 function openModal(modal) {
   modal.classList.add('modal_opened');
+  openModalKeyDown();
 }
 
 function closeModal(modal) {
   modal.classList.remove('modal_opened');
+  closeModalKeyDown();
 }
 
 //Function to open & close add new card form
@@ -95,14 +97,21 @@ imageCloseButton.addEventListener('click', () => {
 
 //Function to close modal with ESC button
 
-function closeModalWithEscape(evt) {
-  if (evt.key === 'Escape') {
+function closeModalByEscape(evt) {
+  const escapeKey = 27;
+  if (evt.keyCode === escapeKey) {
     const openedModal = document.querySelector('.modal_opened');
     closeModal(openedModal);
   }
 }
 
-document.addEventListener('keydown', closeModalWithEscape);
+function openModalKeyDown() {
+  document.addEventListener('keydown', closeModalByEscape);
+}
+
+function closeModalKeyDown() {
+  document.removeEventListener('keydown', closeModalByEscape);
+}
 
 //Function to close modal when clicking on overlay
 
@@ -110,8 +119,9 @@ modalCardOverlay.addEventListener('mousedown', () => {
   closeModal(modalCard);
 });
 
-modalImage.addEventListener('mousedown', () => {
+modalImageOverlay.addEventListener('mousedown', () => {
   closeModal(modalImage);
+  console.log('i work');
 });
 
 // Function to add a new card based off of form
@@ -126,7 +136,7 @@ cardAddForm.addEventListener('submit', (e) => {
   closeModal(modalCard);
   renderCard(cardView, cardListEl);
   cardAddForm.reset();
-  disableSubmitButton(NewCardSubmitButton, config.inactiveButtonClass);
+  disableSubmitButton(newCardSubmitButton, config.inactiveButtonClass);
 });
 
 function renderCard(cardElement, container) {
