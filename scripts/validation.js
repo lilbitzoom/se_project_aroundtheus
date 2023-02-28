@@ -1,6 +1,6 @@
 // enabling validation by calling enableValidation()
 // pass all the settings on call
-
+/*
 function showInputError(
   formElement,
   inputElement,
@@ -26,7 +26,7 @@ function hideInputError(
   errorMessageElement.textContent = inputElement.validationMessage;
   errorMessageElement.classList.remove(errorClass);
 }
-
+*/
 function checkInputValidity(formElement, inputElement, options) {
   if (!inputElement.validity.valid) {
     showInputError(formElement, inputElement, options);
@@ -34,7 +34,7 @@ function checkInputValidity(formElement, inputElement, options) {
     hideInputError(formElement, inputElement, options);
   }
 }
-
+/*
 function hasInvalidInput(inputList) {
   return !inputList.every((inputElement) => inputElement.validity.valid);
 }
@@ -64,6 +64,7 @@ function setEventListeners(formElement, options) {
     });
   });
 }
+*/
 
 function disableSubmitButton(submitButton, inactiveButtonClass) {
   submitButton.classList.add(inactiveButtonClass);
@@ -78,4 +79,4 @@ function enableValidation(options) {
   });
 }
 
-enableValidation(config);
+//enableValidation(config);

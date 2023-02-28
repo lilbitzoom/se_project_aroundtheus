@@ -1,3 +1,15 @@
+import FormValidator from './FormValidator.js';
+import Card from './Card.js';
+
+const validationSettings = {
+  formSelector: '.modal__form',
+  inputSelector: '.modal__input',
+  submitButtonSelector: '.modal__submit-button',
+  inactiveButtonClass: 'modal__submit-button_inactive',
+  inputErrorClass: 'modal__input-error',
+  errorClass: 'modal__error_visible',
+};
+
 const initialCards = [
   {
     name: 'San Francisco',
@@ -41,12 +53,35 @@ const cardAddForm = modalCard.querySelector('.modal__form');
 const modalImage = document.querySelector('#image_pop-up');
 const newCardSubmitButton = document.querySelector('#new-card-submit-button');
 const imageCloseButton = document.querySelector('#image_pop-up_close_button');
+const modalProfile = document.querySelector('#profile-editor');
+const profileContainer = document.querySelector('.profile__description');
+const profileTitle = profileContainer.querySelector('.profile__title');
+
+const profileEditButton = profileTitle.querySelector('.profile__edit-button');
+const profileEditForm = modalProfile.querySelector('.modal__form');
+const profileCloseButton = modalProfile.querySelector(
+  '#profile-editor_close_button'
+);
+const profileSaveButton = modalProfile.querySelector('.modal__save-button');
+const profileName = profileTitle.querySelector('.profile__name');
+const profileJob = profileContainer.querySelector('.profile__subheader');
+
+const inputName = profileEditForm.querySelector('#name');
+const inputDescription = profileEditForm.querySelector('#description');
+
+const modalProfileOverlay = document.querySelector('#profile-editor-overlay');
+
+const editFormValidator = new FormValidator(
+  validationSettings,
+  profileEditForm
+);
+
+const addFormValidator = new FormValidator(validationSettings, cardAddForm);
+
+const cardSelector = '#card';
 
 //Function to present cards based off of initialCards array
 function getCardElement(cardData) {
-  const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
-  const cardImageEL = cardElement.querySelector('.card__image');
-  const cardTitleEl = cardElement.querySelector('.card__title');
   cardImageEL.src = cardData.link;
   cardImageEL.alt = cardData.name;
   cardTitleEl.textContent = cardData.name;
@@ -56,18 +91,23 @@ function getCardElement(cardData) {
   cardLikeButton.addEventListener('click', () => {
     cardLikeButton.classList.toggle('like-button__selected');
   });
-  //  event listener deleting card
-  const cardDeleteButton = cardElement.querySelector('.card__delete-button');
-  cardDeleteButton.addEventListener('click', (evt) => {
-    evt.target.closest('.card').remove();
-  });
-  //add event listener image pop up
-  cardImageEL.addEventListener('click', () => {
-    handlePreviewPicture(cardData);
-  });
-
-  return cardElement;
 }
+//  event listener deleting card
+const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
+const cardImageEL = cardElement.querySelector('.card__image');
+const cardTitleEl = cardElement.querySelector('.card__title');
+
+const cardDeleteButton = cardElement.querySelector('.card__delete-button');
+cardDeleteButton.addEventListener('click', (evt) => {
+  evt.target.closest('.card').remove();
+});
+//add event listener image pop up
+cardImageEL.addEventListener('click', () => {
+  handlePreviewPicture(cardData);
+});
+
+// return cardElement;
+//}
 
 //Universal open and close modal function
 function openModal(modal) {
@@ -139,9 +179,13 @@ cardAddForm.addEventListener('submit', (e) => {
   disableSubmitButton(newCardSubmitButton, config.inactiveButtonClass);
 });
 
-function renderCard(cardElement, container) {
-  cardListEl.prepend(cardElement);
+function renderCard(data, cardListEl) {
+  cardListEl.prepend(getCardElement(data));
+
+  const card = new Card(data, cardSelector);
+  cardListEl.prepend(card.getView());
 }
+
 initialCards.forEach((cardData) => {
   const cardView = getCardElement(cardData);
   renderCard(cardView, cardListEl);
@@ -158,11 +202,39 @@ const handlePreviewPicture = (cardData) => {
   openModal(modalImage);
 };
 
-const config = {
-  formSelector: '.modal__form',
-  inputSelector: '.modal__input',
-  submitButtonSelector: '.modal__submit-button',
-  inactiveButtonClass: 'modal__submit-button_inactive',
-  inputErrorClass: 'modal__input-error',
-  errorClass: 'modal__error_visible',
-};
+//Function to open edit profile button
+
+profileEditButton.addEventListener('click', () => {
+  fillProfileForm();
+  openModal(modalProfile);
+});
+
+//Function to close edit profile with 'X' button & clicking on overlay
+
+profileCloseButton.addEventListener('click', () => {
+  closeModal(modalProfile);
+});
+
+modalProfileOverlay.addEventListener('click', () => {
+  closeModal(modalProfile);
+});
+
+//Function to edit the title and subheader in the profile
+
+function handleProfileFormSubmit(evt) {
+  evt.preventDefault();
+  profileName.textContent = inputName.value;
+  profileJob.textContent = inputDescription.value;
+}
+
+profileEditForm.addEventListener('submit', (evt) => {
+  handleProfileFormSubmit(evt);
+  closeModal(modalProfile);
+});
+
+//Form reflects profile webpage
+
+function fillProfileForm() {
+  inputName.value = profileName.textContent;
+  inputDescription.value = profileJob.textContent;
+}
