@@ -26,15 +26,15 @@ function hideInputError(
   errorMessageElement.textContent = inputElement.validationMessage;
   errorMessageElement.classList.remove(errorClass);
 }
-*/
-function checkInputValidity(formElement, inputElement, options) {
+
+export function checkInputValidity(formElement, inputElement, options) {
   if (!inputElement.validity.valid) {
     showInputError(formElement, inputElement, options);
   } else {
     hideInputError(formElement, inputElement, options);
   }
 }
-/*
+
 function hasInvalidInput(inputList) {
   return !inputList.every((inputElement) => inputElement.validity.valid);
 }
@@ -66,17 +66,18 @@ function setEventListeners(formElement, options) {
 }
 */
 
-function disableSubmitButton(submitButton, inactiveButtonClass) {
+export function disableSubmitButton(submitButton, inactiveButtonClass) {
   submitButton.classList.add(inactiveButtonClass);
   submitButton.disabled = true;
 }
 
-function enableValidation(options) {
+/*
+export function enableValidation(options) {
   const { formSelector } = options;
   const formElement = [...document.querySelectorAll(formSelector)];
   formElement.forEach((formElement) => {
     setEventListeners(formElement, options);
   });
 }
-
+*/
 //enableValidation(config);
