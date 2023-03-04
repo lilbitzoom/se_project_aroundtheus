@@ -90,7 +90,11 @@ const editFormValidator = new FormValidator(
   profileEditForm
 );
 
+editFormValidator.enableValidation();
+
 const addFormValidator = new FormValidator(validationSettings, cardAddForm);
+
+addFormValidator.enableValidation();
 
 const cardSelector = '#card';
 
