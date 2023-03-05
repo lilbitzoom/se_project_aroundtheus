@@ -13,14 +13,11 @@ class FormValidator {
     this._errorMessageElement = this._form.querySelector(
       `#${inputElement.id}-error`
     );
-    inputElement.classList.add(this._inputErrorClass);
     this._errorMessageElement.textContent = errorMessage;
     this._errorMessageElement.classList.add(this._errorClass);
   }
 
   _hideInputError(inputElement) {
-    console.log(this._errorMessageElement);
-    this._errorMessageElement.classList.add(this._inputErrorClass);
     this._errorMessageElement.textContent = inputElement.validationMessage;
     this._errorMessageElement.classList.remove(this._errorClass);
   }
@@ -35,7 +32,6 @@ class FormValidator {
   }
 
   _hasInvalidInput(inputList) {
-    console.log(inputList);
     return !inputList.every((inputElement) => inputElement.validity.valid);
   }
 
