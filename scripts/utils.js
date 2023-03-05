@@ -17,20 +17,16 @@ import {
   inputDescription,
   cardAddForm,
   renderCard,
-  getCardElement,
   cardListEl,
-  newCardSubmitButton,
 } from './index.js';
 
-import disableSubmitButton from './FormValidator.js';
-
 //Universal open and close modal function
-function openModal(modal) {
+export function openModal(modal) {
   modal.classList.add('modal_opened');
   openModalKeyDown();
 }
 
-export function closeModal(modal) {
+function closeModal(modal) {
   modal.classList.remove('modal_opened');
   closeModalKeyDown();
 }
@@ -114,12 +110,8 @@ cardAddForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const name = e.target.title.value;
   const link = e.target.link.value;
-  const cardView = getCardElement({
-    name,
-    link,
-  });
+
   closeModal(modalCard);
-  renderCard(cardView, cardListEl);
+  renderCard({ name, link }, cardListEl);
   cardAddForm.reset();
-  //disableSubmitButton(newCardSubmitButton, this._inactiveButtonClass);
 });

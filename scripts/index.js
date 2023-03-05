@@ -1,7 +1,6 @@
 import FormValidator from './FormValidator.js';
-import Card from './Card.js';
 
-const validationSettings = {
+export const validationSettings = {
   formSelector: '.modal__form',
   inputSelector: '.modal__input',
   submitButtonSelector: '.modal__submit-button',
@@ -96,8 +95,6 @@ const addFormValidator = new FormValidator(validationSettings, cardAddForm);
 
 addFormValidator.enableValidation();
 
-const cardSelector = '#card';
-
 //Function to present cards based off of initialCards array
 export function getCardElement(cardData) {
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
@@ -120,23 +117,21 @@ export function getCardElement(cardData) {
   cardDeleteButton.addEventListener('click', (evt) => {
     evt.target.closest('.card').remove();
   });
-  return cardElement;
 
   //add event listener image pop up
   cardImageEL.addEventListener('click', () => {
     handlePreviewPicture(cardData);
   });
+
+  return cardElement;
 }
 
 export function renderCard(data, cardListEl) {
   cardListEl.prepend(getCardElement(data));
-
-  const card = new Card(data, cardSelector);
-  //cardListEl.prepend(card.getView());
 }
 
 initialCards.forEach((cardData) => {
-  //const cardView = getCardElement(cardData);
+  const cardView = getCardElement(cardData);
   renderCard(cardData, cardListEl);
 });
 
