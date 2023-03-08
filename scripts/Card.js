@@ -1,19 +1,4 @@
-const closeModalByEscape = (evt) => {
-  const escapeKey = 27;
-  if (evt.keyCode === escapeKey) {
-    const openedModal = document.querySelector('.modal_opened');
-    closeModal(openedModal);
-  }
-};
-
-const closeModal = (modal) => {
-  modal.classList.remove('modal_opened');
-  closeModalKeyDown();
-};
-
-const closeModalKeyDown = () => {
-  document.removeEventListener('keydown', closeModalByEscape);
-};
+import { openModal } from './utils.js';
 
 class Card {
   constructor(data, cardSelector) {
@@ -22,37 +7,31 @@ class Card {
 
     this._cardSelector = cardSelector;
   }
+
   _setEventListeners() {
-    this._element
-      .querySelector('.card__like-button')
-      .addEventListener('click', () => this._handleLikeIcon);
+    this._likeButton.addEventListener('click', this._handleLikeIcon);
 
-    this._element
-      .querySelector('.card__delete-button')
-      .addEventListener('click', () => this._handleDeleteCard);
+    this._deleteButton.addEventListener('click', this._handleDeleteCard);
 
-    this._element
-      .querySelector('.card__image')
-      .addEventListener('click', () => this._handlePreviewPicture);
+    this._cardImage.addEventListener('click', this._handlePreviewPicture);
   }
 
-  _handleLikeIcon() {
+  _handleLikeIcon = () => {
     this._element
       .querySelector('.card__like-button')
       .classList.toggle('like-button__selected');
-  }
+  };
 
-  _handleDeleteCard() {
-    this._element
-      .querySelector('.card__delete-button')
-      .closest('.card')
-      .remove();
-  }
+  _handleDeleteCard = () => {
+    this._element.remove().querySelector('.card__delete-button');
+
+    this._element = null;
+  };
 
   _handlePreviewPicture() {
-    modalImageEL.src = this._link;
-    modalImageEL.alt = this._name;
-    modalTitleEL.textContent = this._name;
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
+    this._cardTitle.textContent = this._name;
 
     openModal(modalImage);
   }
@@ -67,12 +46,17 @@ class Card {
   getView() {
     this._element = this._getTemplate();
 
-    this._element.querySelector('.card__image').src = this._link;
-    this._element.querySelector('.card__title').textContent = this._name;
+    this._cardImage = this._element.querySelector('.card__image');
+    this._cardTitle = this._element.querySelector('.card__title');
+    this._likeButton = this._element.querySelector('.card__like-button');
+    this._deleteButton = this._element.querySelector('.card__delete-button');
+
+    this._cardImage.src = this._link;
+    this._cardTitle.textContent = this._name;
+    this._cardImage.alt = this._name;
 
     this._setEventListeners();
-
-    return this.element;
+    return this._element;
   }
 }
 
