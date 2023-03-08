@@ -165,13 +165,8 @@ cardAddForm.addEventListener('submit', (e) => {
   closeModal(modalCard);
   renderCard({ name, link }, cardListEl);
   cardAddForm.reset();
-  disableSubmitButton(
+  addFormValidator.disableSubmitButton(
     newCardSubmitButton,
     validationSettings.inactiveButtonClass
   );
 });
-
-function disableSubmitButton(submitButton, inactiveButtonClass) {
-  submitButton.classList.add(inactiveButtonClass);
-  submitButton.disabled = true;
-}
