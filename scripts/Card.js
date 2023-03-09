@@ -23,18 +23,19 @@ class Card {
   };
 
   _handleDeleteCard = () => {
-    this._element.remove().querySelector('.card__delete-button');
+    this._element.remove();
 
     this._element = null;
   };
 
-  _handlePreviewPicture() {
-    this._cardImage.src = this._link;
-    this._cardImage.alt = this._name;
-    this._cardTitle.textContent = this._name;
+  _handlePreviewPicture = () => {
+    this._modalImage.querySelector('.modal__image').src = this._link;
+    this._modalImage.querySelector('.modal__image').alt = this._name;
+    this._modalImage.querySelector('.modal__image-title').textContent =
+      this._name;
 
-    openModal(modalImage);
-  }
+    openModal(this._modalImage);
+  };
 
   _getTemplate() {
     return document
@@ -46,13 +47,13 @@ class Card {
   getView() {
     this._element = this._getTemplate();
 
-    this._cardImage = this._element.querySelector('.card__image');
-    this._cardTitle = this._element.querySelector('.card__title');
     this._likeButton = this._element.querySelector('.card__like-button');
     this._deleteButton = this._element.querySelector('.card__delete-button');
+    this._modalImage = document.querySelector('#image_pop-up');
+    this._cardImage = this._element.querySelector('.card__image');
 
     this._cardImage.src = this._link;
-    this._cardTitle.textContent = this._name;
+    this._element.querySelector('.card__title').textContent = this._name;
     this._cardImage.alt = this._name;
 
     this._setEventListeners();
