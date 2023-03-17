@@ -228,7 +228,12 @@
     width: 240px;
   }
 
-  .modal__image-close-button {
-    left: 140px;
+  .modal__view-image {
+    height: 299px;
+    width: 240px;
+  }
+
+  .modal__error_visible {
+    width: 238px;
   }
 }

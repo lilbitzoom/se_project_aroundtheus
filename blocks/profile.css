@@ -27,7 +27,7 @@
 }
 
 .profile__name {
-  font-family: "Inter", "Arial", sans-serif;
+  font-family: 'Inter', 'Arial', sans-serif;
   font-weight: 500;
   font-size: 42px;
   line-height: 1.14;
@@ -40,7 +40,7 @@
 }
 
 .profile__subheader {
-  font-family: "Inter", "Arial", sans-serif;
+  font-family: 'Inter', 'Arial', sans-serif;
   font-weight: 400;
   font-size: 18px;
   line-height: 1.22;
@@ -72,7 +72,7 @@
   cursor: pointer;
 }
 
-.profile__add-button {
+.card__add-button {
   width: 150px;
   height: 50px;
   background-color: transparent;
@@ -86,7 +86,7 @@
   transition: 0.3s;
 }
 
-.profile__add-button:hover {
+.card__add-button:hover {
   opacity: 0.6;
   cursor: pointer;
 }
@@ -113,7 +113,7 @@
     padding: 9px;
   }
 
-  .profile__add-button {
+  .card__add-button {
     margin-left: 50px;
     width: 100px;
   }
@@ -163,7 +163,7 @@
     background-size: 7.5px;
   }
 
-  .profile__add-button {
+  .card__add-button {
     margin: auto;
     width: 282px;
   }

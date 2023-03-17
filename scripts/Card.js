@@ -1,4 +1,4 @@
-import { openModal } from './utils.js';
+import Popup from './Popup.js';
 
 class Card {
   constructor(data, cardSelector) {
@@ -34,7 +34,8 @@ class Card {
     this._modalImage.querySelector('.modal__image-title').textContent =
       this._name;
 
-    openModal(this._modalImage);
+    const popup = new Popup({ popupSelector: '#image_pop-up' });
+    popup.open(this._modalImage);
   };
 
   _getTemplate() {
