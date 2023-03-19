@@ -6,21 +6,27 @@ class Popup {
   open = () => {
     this._popupElement.classList.add('modal_opened');
 
-    this._popupElement.addEventListener('keydown', this._handleEscClose);
+    document.addEventListener('keydown', (evt) => {
+      this._handleEscClose(evt);
+    });
   };
 
   close = () => {
     if (this._popupElement === null) {
     } else {
       this._popupElement.classList.remove('modal_opened');
-      document.removeEventListener('keydown', this._handleEscClose);
+
+      document.removeEventListener('keydown', (evt) => {
+        this._handleEscClose(evt);
+      });
     }
   };
 
-  _handleEscClose = (evt) => {
+  _handleEscClose = (event) => {
     const escapeKey = 27;
-    if (evt.keyCode === escapeKey) {
+    if (event.keyCode === escapeKey) {
       this.close();
+      console.log('I work');
     }
   };
 
