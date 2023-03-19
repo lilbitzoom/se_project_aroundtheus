@@ -1,7 +1,7 @@
-import FormValidator from './scripts/FormValidator.js';
-import Popup from './scripts/Popup.js';
-import UserInfo from './scripts/UserInfo.js';
-import Section from './scripts/Section.js';
+import FormValidator from '../scripts/FormValidator.js';
+import Popup from '../scripts/Popup.js';
+import UserInfo from '../scripts/UserInfo.js';
+import Section from '../scripts/Section.js';
 import './index.css';
 
 import {
@@ -21,7 +21,7 @@ import {
   cardListEl,
   initialCards,
   newCardSubmitButton,
-} from './scripts/constant.js';
+} from '../utils/constant.js';
 
 export const validationSettings = {
   formSelector: '.modal__form',
