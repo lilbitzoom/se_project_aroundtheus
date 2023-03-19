@@ -47,7 +47,9 @@ export const profileCloseButton = modalProfile.querySelector(
 export const profileSaveButton = modalProfile.querySelector(
   '.modal__save-button'
 );
-export const cardAddButton = document.querySelector('.card__add-button');
+export const cardAddButton = document.querySelector(
+  '.profile__add-card-button'
+);
 
 export const inputName = profileEditForm.querySelector('#name');
 export const inputDescription = profileEditForm.querySelector('#description');
