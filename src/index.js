@@ -1,8 +1,8 @@
-import FormValidator from './FormValidator.js';
-import Popup from './Popup.js';
-import PopupWithForm from './PopupWithForm.js';
-import UserInfo from './UserInfo.js';
-import Section from './Section.js';
+import FormValidator from './scripts/FormValidator.js';
+import Popup from './scripts/Popup.js';
+import UserInfo from './scripts/UserInfo.js';
+import Section from './scripts/Section.js';
+import './index.css';
 
 import {
   cardAddButton,
@@ -21,7 +21,7 @@ import {
   cardListEl,
   initialCards,
   newCardSubmitButton,
-} from './constant.js';
+} from './scripts/constant.js';
 
 export const validationSettings = {
   formSelector: '.modal__form',
@@ -92,12 +92,7 @@ modalProfileOverlay.addEventListener('click', () => {
 });
 
 //Function to edit the title and subheader in the profile
-/*
-function handleProfileFormSubmit() {
-  //evt.preventDefault();
-  
-}
-*/
+
 profileEditForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
   userInfo.setUserInfo();

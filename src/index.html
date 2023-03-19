@@ -7,14 +7,13 @@
     <meta name="keywords" content="HTML, CSS, Javascript, Figma" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Around the US</title>
-    <link rel="stylesheet" href="./pages/index.css" />
   </head>
 
   <body class="body">
     <header class="header">
       <img
         class="header__logo"
-        src="./images/header-logo.svg"
+        src="<%=require('./images/header-logo.svg')%>"
         alt="header-logo"
       />
     </header>
@@ -23,7 +22,7 @@
       <section class="profile">
         <img
           class="profile__photo"
-          src="./images/jacques-cousteau.svg"
+          src="<%=require('./images/jacques-cousteau.svg')%>"
           alt="profile-photo"
         />
         <div class="profile__description">
@@ -156,6 +155,6 @@
         </div>
       </li>
     </template>
-    <script type="module" src="./scripts/index.js" defer></script>
+    <script type="module" src="./index.js" defer></script>
   </body>
 </html>
