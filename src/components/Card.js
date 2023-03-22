@@ -1,5 +1,3 @@
-import Popup from './Popup.js';
-
 class Card {
   constructor(data, cardSelector) {
     this._name = data.name;
@@ -17,9 +15,7 @@ class Card {
   }
 
   _handleLikeIcon = () => {
-    this._element
-      .querySelector('.card__like-button')
-      .classList.toggle('like-button__selected');
+    this._likeButton.classList.toggle('like-button__selected');
   };
 
   _handleDeleteCard = () => {
@@ -28,15 +24,9 @@ class Card {
     this._element = null;
   };
 
-  _handlePreviewPicture = () => {
-    this._modalImage.querySelector('.modal__image').src = this._link;
-    this._modalImage.querySelector('.modal__image').alt = this._name;
-    this._modalImage.querySelector('.modal__image-title').textContent =
-      this._name;
-
-    const popup = new Popup({ popupSelector: '#image_pop-up' });
-    popup.open(this._modalImage);
-  };
+  //handleCardClick = () => {
+  //  console.log('handleCardClick');
+  //};
 
   _getTemplate() {
     return document

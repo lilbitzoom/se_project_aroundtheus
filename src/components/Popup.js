@@ -3,24 +3,24 @@ class Popup {
     this._popupElement = document.querySelector(popupSelector);
   }
 
-  open = () => {
+  open() {
     this._popupElement.classList.add('modal_opened');
 
-    document.addEventListener('keydown', (evt) => {
+    document.addEventListener('keyup', (evt) => {
       this._handleEscClose(evt);
     });
-  };
+  }
 
-  close = () => {
+  close() {
     if (this._popupElement === null) {
     } else {
       this._popupElement.classList.remove('modal_opened');
 
-      document.removeEventListener('keydown', (evt) => {
+      document.removeEventListener('keyup', (evt) => {
         this._handleEscClose(evt);
       });
     }
-  };
+  }
 
   _handleEscClose = (event) => {
     const escapeKey = 27;

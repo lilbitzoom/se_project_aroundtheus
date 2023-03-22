@@ -1,7 +1,7 @@
-import FormValidator from '../scripts/FormValidator.js';
-import Popup from '../scripts/Popup.js';
-import UserInfo from '../scripts/UserInfo.js';
-import Section from '../scripts/Section.js';
+import FormValidator from '../components/FormValidator.js';
+import Popup from '../components/Popup.js';
+import UserInfo from '../components/UserInfo.js';
+import Section from '../components/Section.js';
 import './index.css';
 
 import {
@@ -21,7 +21,10 @@ import {
   cardListEl,
   initialCards,
   newCardSubmitButton,
-} from '../utils/constant.js';
+  cardImage,
+} from '../utils/constants.js';
+import Card from '../components/Card.js';
+import PopupWithImage from '../components/PopupWithImage.js';
 
 export const validationSettings = {
   formSelector: '.modal__form',
@@ -43,27 +46,52 @@ editFormValidator.enableValidation();
 const addFormValidator = new FormValidator(validationSettings, cardAddForm);
 
 addFormValidator.enableValidation();
-const section = new Section();
+
 const profileEditorPopup = new Popup({ popupSelector: '#profile-editor' });
 const newCardPopup = new Popup({ popupSelector: '#new-card' });
 const imagePopup = new Popup({ popupSelector: '#image_pop-up' });
 const userInfo = new UserInfo({ name: '#name', description: '#description' });
+const newCardFormValidator = new FormValidator({ popupSelector: '#new-card' });
+const ImagePopup = new PopupWithImage('#image_pop-up');
 
 //Renders card on page
-initialCards.forEach((items) => {
-  section.renderer(items, cardListEl);
-});
+const renderedCardItems = new Section(
+  {
+    items: initialCards,
+    renderer: (item) => {
+      const card = new Card(item, '#card', (name, link) => {
+        ImagePopup.open(name, link);
+      });
 
+      renderedCardItems.addItem(card.getView());
+    },
+  },
+  cardListEl
+);
+
+renderedCardItems.renderItems();
+/*
+initialCards.forEach((items) => {
+  section.renderer(cardInfo, cardListEl);
+});
+*/
 //Function to open different modals
 cardAddButton.addEventListener('click', () => {
   newCardPopup.open(modalCard);
+  newCardFormValidator.resetValidation(modalCard);
+  console.log('formvalidator');
 });
 
 profileEditButton.addEventListener('click', () => {
   userInfo.getUserInfo();
   profileEditorPopup.open(modalProfile);
 });
-
+/*
+cardImage.addEventListener('click', () => {
+  cardInfo.handleCardClick();
+  imagePopup.open(modalImage);
+});
+*/
 //Funtions to close different modals with 'X' button
 imageCloseButton.addEventListener('click', () => {
   imagePopup.close(modalImage);
@@ -93,8 +121,7 @@ modalProfileOverlay.addEventListener('click', () => {
 
 //Function to edit the title and subheader in the profile
 
-profileEditForm.addEventListener('submit', (evt) => {
-  evt.preventDefault();
+profileEditForm.addEventListener('submit', () => {
   userInfo.setUserInfo();
   profileEditorPopup.close(modalProfile);
 });
@@ -106,7 +133,20 @@ cardAddForm.addEventListener('submit', (e) => {
   const link = e.target.link.value;
 
   newCardPopup.close(modalCard);
-  section.renderer({ name, link }, cardListEl);
+
+  const sectionObject = {
+    items: [name, link],
+    renderer: (item) => {
+      const card = new Card(item, '#card', (name, link) => {
+        ImagePopup.open(name, link);
+      });
+
+      renderedCardItems.addItem(card.getView());
+    },
+  };
+
+  const section = new Section(sectionObject, cardListEl);
+  section.renderItems(sectionObject, cardListEl);
   cardAddForm.reset();
   addFormValidator.disableSubmitButton(
     newCardSubmitButton,

@@ -26,12 +26,14 @@ class FormValidator {
 
   _toggleButtonState() {
     if (this._hasInvalidInput(this._inputElements)) {
-      this.disableSubmitButton(this._submitButton, this._inactiveButtonClass);
+      this.disableSubmitButton();
+
       return;
     } else {
       this._submitButton.classList.remove(this._inactiveButtonClass);
       this._submitButton.disabled = false;
     }
+    console.log('togglebutton');
   }
 
   _hasInvalidInput(inputList) {
@@ -49,6 +51,15 @@ class FormValidator {
   disableSubmitButton() {
     this._submitButton.classList.add(this._inactiveButtonClass);
     this._submitButton.disabled = true;
+  }
+
+  resetValidation() {
+    this._toggleButtonState();
+
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement);
+    });
+    console.log('resetvalidation');
   }
 
   _setEventListeners() {

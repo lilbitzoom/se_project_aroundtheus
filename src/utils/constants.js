@@ -79,3 +79,6 @@ export const modalImage = document.querySelector('#image_pop-up');
 export const imageCloseButton = document.querySelector(
   '#image_pop-up_close_button'
 );
+
+//Image - Variable Declarations
+export const cardImage = document.querySelectorAll('.card__image');
