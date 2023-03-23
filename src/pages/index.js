@@ -25,6 +25,7 @@ import {
 } from '../utils/constants.js';
 import Card from '../components/Card.js';
 import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithForm.js';
 
 export const validationSettings = {
   formSelector: '.modal__form',
@@ -51,47 +52,40 @@ const profileEditorPopup = new Popup({ popupSelector: '#profile-editor' });
 const newCardPopup = new Popup({ popupSelector: '#new-card' });
 const imagePopup = new Popup({ popupSelector: '#image_pop-up' });
 const userInfo = new UserInfo({ name: '#name', description: '#description' });
-const newCardFormValidator = new FormValidator({ popupSelector: '#new-card' });
-const ImagePopup = new PopupWithImage('#image_pop-up');
+const cardImagePopup = new PopupWithImage({ popupSelector: '#image_pop-up' });
+
+const createCard = (item) => {
+  const card = new Card(item, '#card', (name, link) => {
+    cardImagePopup.open(name, link);
+  });
+
+  return card.getView();
+};
 
 //Renders card on page
 const renderedCardItems = new Section(
   {
     items: initialCards,
-    renderer: (item) => {
-      const card = new Card(item, '#card', (name, link) => {
-        ImagePopup.open(name, link);
-      });
-
-      renderedCardItems.addItem(card.getView());
+    renderer: (data) => {
+      renderedCardItems.addItem(createCard(data));
     },
   },
+
   cardListEl
 );
 
 renderedCardItems.renderItems();
-/*
-initialCards.forEach((items) => {
-  section.renderer(cardInfo, cardListEl);
-});
-*/
-//Function to open different modals
+
 cardAddButton.addEventListener('click', () => {
   newCardPopup.open(modalCard);
-  newCardFormValidator.resetValidation(modalCard);
-  console.log('formvalidator');
+  //cardAddForm.resetValidation(modalCard);
 });
 
 profileEditButton.addEventListener('click', () => {
   userInfo.getUserInfo();
   profileEditorPopup.open(modalProfile);
 });
-/*
-cardImage.addEventListener('click', () => {
-  cardInfo.handleCardClick();
-  imagePopup.open(modalImage);
-});
-*/
+
 //Funtions to close different modals with 'X' button
 imageCloseButton.addEventListener('click', () => {
   imagePopup.close(modalImage);
@@ -126,30 +120,27 @@ profileEditForm.addEventListener('submit', () => {
   profileEditorPopup.close(modalProfile);
 });
 
-// Function to add a new card based off of form
+// Function to add a new card based off of new card form
 cardAddForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const name = e.target.title.value;
   const link = e.target.link.value;
 
   newCardPopup.close(modalCard);
+  const data = { name, link };
+  renderedCardItems.addItem(createCard(data));
 
-  const sectionObject = {
-    items: [name, link],
-    renderer: (item) => {
-      const card = new Card(item, '#card', (name, link) => {
-        ImagePopup.open(name, link);
-      });
-
-      renderedCardItems.addItem(card.getView());
-    },
-  };
-
-  const section = new Section(sectionObject, cardListEl);
-  section.renderItems(sectionObject, cardListEl);
   cardAddForm.reset();
   addFormValidator.disableSubmitButton(
     newCardSubmitButton,
     validationSettings.inactiveButtonClass
   );
 });
+/*
+const newCardAddForms = new PopupWithForm({
+  popupSelector: newCardPopup,
+  handleFormSubmit: (data) => {
+    cardListEl.addItem(createCard(data));
+  },
+});
+*/

@@ -81,4 +81,4 @@ export const imageCloseButton = document.querySelector(
 );
 
 //Image - Variable Declarations
-export const cardImage = document.querySelectorAll('.card__image');
+export const cardImage = document.querySelector('.card__image');

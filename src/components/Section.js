@@ -4,13 +4,7 @@ export default class Section {
     this._renderer = renderer;
     this._cardContainer = cardContainer;
   }
-  /*
-  renderer = (items, cardListEl) => {
-    const card = new Card(items, '#card');
 
-    cardListEl.prepend(card.getView());
-  };
-*/
   renderItems() {
     this._items.forEach((item) => this._renderer(item));
   }

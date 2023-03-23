@@ -26,7 +26,6 @@ class Popup {
     const escapeKey = 27;
     if (event.keyCode === escapeKey) {
       this.close();
-      console.log('I work');
     }
   };
 
@@ -40,13 +39,13 @@ class Popup {
     this._popupElement
       .querySelector('modal__close-button')
       .addEventListener('click', () => {
-        this.close(modalCard);
+        this.close();
       });
 
     this._popupElement
       .querySelector('.overlay')
       .addEventListener('click', () => {
-        this.close(modalCard);
+        this.close();
       });
   }
 }
