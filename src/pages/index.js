@@ -37,12 +37,6 @@ addFormValidator.enableValidation();
 const userInfo = new UserInfo({ name: '#name', description: '#description' });
 
 //Profile Editor Popup
-const profileEditorPopup = new PopupWithForm({
-  popupSelector: '#profile-editor',
-  handleFormSubmit: (data) => {
-    userInfo.setUserInfo(data);
-  },
-});
 
 //Profile Editor Close
 profileEditorPopup.setEventListener();
@@ -79,9 +73,17 @@ cardAddButton.addEventListener('click', () => {
   newCardPopup.open();
 });
 
+//Profile Editor
 profileEditButton.addEventListener('click', () => {
   userInfo.getUserInfo();
   profileEditorPopup.open();
+});
+
+const profileEditorPopup = new PopupWithForm({
+  popupSelector: '#profile-editor',
+  handleFormSubmit: (data) => {
+    userInfo.setUserInfo(data);
+  },
 });
 /*
 // Function to add a new card based off of new card form
