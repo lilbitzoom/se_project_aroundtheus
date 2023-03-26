@@ -6,47 +6,48 @@ class Popup {
   open() {
     this._popupElement.classList.add('modal_opened');
 
-    document.addEventListener('keyup', (evt) => {
-      this._handleEscClose(evt);
-    });
+    document.addEventListener(
+      'keyup',
+      (evt) => {
+        this._handleEscClose(evt);
+      },
+      true
+    );
   }
 
   close() {
-    if (this._popupElement === null) {
-    } else {
-      this._popupElement.classList.remove('modal_opened');
+    this._popupElement.classList.remove('modal_opened');
 
-      document.removeEventListener('keyup', (evt) => {
+    document.removeEventListener(
+      'keyup',
+      (evt) => {
         this._handleEscClose(evt);
-      });
-    }
+      },
+      true
+    );
   }
 
-  _handleEscClose = (event) => {
+  _handleEscClose(event) {
     const escapeKey = 27;
     if (event.keyCode === escapeKey) {
       this.close();
     }
-  };
+  }
 
-  handleOverlay = (evt) => {
-    if (evt.target.classList.contains('modal_opened')) {
+  handleOverlay(event) {
+    if (event.target.classList.contains('modal_opened')) {
       this.close();
     }
-  };
+  }
 
   setEventListener() {
     this._popupElement
-      .querySelector('modal__close-button')
-      .addEventListener('click', () => {
-        this.close();
-      });
+      .querySelector('.modal__close-button')
+      .addEventListener('click', () => this.close());
 
-    this._popupElement
-      .querySelector('.overlay')
-      .addEventListener('click', () => {
-        this.close();
-      });
+    document.addEventListener('mousedown', (event) =>
+      this.handleOverlay(event)
+    );
   }
 }
 

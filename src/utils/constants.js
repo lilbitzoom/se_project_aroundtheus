@@ -24,6 +24,16 @@ export const initialCards = [
     link: 'https://images.unsplash.com/photo-1670349928042-519fee6e11de?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=770&q=80',
   },
 ];
+
+export const validationSettings = {
+  formSelector: '.modal__form',
+  inputSelector: '.modal__input',
+  submitButtonSelector: '.modal__submit-button',
+  inactiveButtonClass: 'modal__submit-button_inactive',
+  inputErrorClass: 'modal__input-error',
+  errorClass: 'modal__error_visible',
+};
+
 //Variable Declarations
 
 export const cardListEl = document.querySelector('.cards__list');
@@ -70,9 +80,6 @@ export const newCardSubmitButton = document.querySelector(
 export const modalCardOverlay = document.querySelector('#new-card-overlay');
 export const modalImageOverlay = document.querySelector(
   '#image_pop-up-overlay'
-);
-export const modalProfileOverlay = document.querySelector(
-  '#profile-editor-overlay'
 );
 
 export const modalImage = document.querySelector('#image_pop-up');

@@ -6,35 +6,20 @@ import './index.css';
 
 import {
   cardAddButton,
-  cardCloseButton,
-  imageCloseButton,
-  modalCardOverlay,
-  modalImageOverlay,
-  profileCloseButton,
-  modalProfileOverlay,
   profileEditForm,
   profileEditButton,
   cardAddForm,
   modalCard,
-  modalImage,
-  modalProfile,
   cardListEl,
   initialCards,
-  newCardSubmitButton,
-  cardImage,
+  validationSettings,
+  profileName,
+  profileJob,
 } from '../utils/constants.js';
+
 import Card from '../components/Card.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
-
-export const validationSettings = {
-  formSelector: '.modal__form',
-  inputSelector: '.modal__input',
-  submitButtonSelector: '.modal__submit-button',
-  inactiveButtonClass: 'modal__submit-button_inactive',
-  inputErrorClass: 'modal__input-error',
-  errorClass: 'modal__error_visible',
-};
 
 // New Class Inserts
 const editFormValidator = new FormValidator(
@@ -48,12 +33,25 @@ const addFormValidator = new FormValidator(validationSettings, cardAddForm);
 
 addFormValidator.enableValidation();
 
-const profileEditorPopup = new Popup({ popupSelector: '#profile-editor' });
-const newCardPopup = new Popup({ popupSelector: '#new-card' });
-const imagePopup = new Popup({ popupSelector: '#image_pop-up' });
+//Calling UserInfo for profile editor
 const userInfo = new UserInfo({ name: '#name', description: '#description' });
-const cardImagePopup = new PopupWithImage({ popupSelector: '#image_pop-up' });
 
+//Profile Editor Popup
+const profileEditorPopup = new PopupWithForm({
+  popupSelector: '#profile-editor',
+  handleFormSubmit: (data) => {
+    userInfo.setUserInfo(data);
+  },
+});
+
+//Profile Editor Close
+profileEditorPopup.setEventListener();
+
+//Image Popup
+const cardImagePopup = new PopupWithImage({ popupSelector: '#image_pop-up' });
+cardImagePopup.setEventListener();
+
+//Takes info from initialCards and creates cards
 const createCard = (item) => {
   const card = new Card(item, '#card', (name, link) => {
     cardImagePopup.open(name, link);
@@ -76,50 +74,16 @@ const renderedCardItems = new Section(
 
 renderedCardItems.renderItems();
 
+//Open Popup for edit and new card button
 cardAddButton.addEventListener('click', () => {
-  newCardPopup.open(modalCard);
-  //cardAddForm.resetValidation(modalCard);
+  newCardPopup.open();
 });
 
 profileEditButton.addEventListener('click', () => {
   userInfo.getUserInfo();
-  profileEditorPopup.open(modalProfile);
+  profileEditorPopup.open();
 });
-
-//Funtions to close different modals with 'X' button
-imageCloseButton.addEventListener('click', () => {
-  imagePopup.close(modalImage);
-});
-
-cardCloseButton.addEventListener('click', () => {
-  newCardPopup.close(modalCard);
-});
-
-profileCloseButton.addEventListener('click', () => {
-  profileEditorPopup.close(modalProfile);
-});
-
-//Function to close modal when clicking on overlay
-
-modalCardOverlay.addEventListener('mousedown', () => {
-  newCardPopup.close(modalCard);
-});
-
-modalImageOverlay.addEventListener('mousedown', () => {
-  imagePopup.close(modalImage);
-});
-
-modalProfileOverlay.addEventListener('click', () => {
-  profileEditorPopup.close(modalProfile);
-});
-
-//Function to edit the title and subheader in the profile
-
-profileEditForm.addEventListener('submit', () => {
-  userInfo.setUserInfo();
-  profileEditorPopup.close(modalProfile);
-});
-
+/*
 // Function to add a new card based off of new card form
 cardAddForm.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -131,12 +95,9 @@ cardAddForm.addEventListener('submit', (e) => {
   renderedCardItems.addItem(createCard(data));
 
   cardAddForm.reset();
-  addFormValidator.disableSubmitButton(
-    newCardSubmitButton,
-    validationSettings.inactiveButtonClass
-  );
+  addFormValidator.disableSubmitButton();
 });
-/*
+
 const newCardAddForms = new PopupWithForm({
   popupSelector: newCardPopup,
   handleFormSubmit: (data) => {
@@ -144,3 +105,16 @@ const newCardAddForms = new PopupWithForm({
   },
 });
 */
+
+//New Card Popup
+const newCardPopup = new PopupWithForm({
+  popupSelector: '#new-card',
+  handleFormSubmit: (data) => {
+    console.log(data);
+    renderedCardItems.addItem(createCard(data));
+    addFormValidator.disableSubmitButton();
+  },
+});
+
+//New Card Close
+newCardPopup.setEventListener();

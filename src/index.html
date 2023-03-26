@@ -46,7 +46,6 @@
     </footer>
 
     <div class="modal" id="profile-editor">
-      <div class="overlay" id="profile-editor-overlay"></div>
       <div class="modal__container">
         <form class="modal__form">
           <button
@@ -80,13 +79,18 @@
             />
             <span class="modal__input-error" id="description-error"></span>
           </label>
-          <button class="modal__submit-button" type="submit">Save</button>
+          <button
+            class="modal__submit-button"
+            type="submit"
+            id="profile-editor-save-button"
+          >
+            Save
+          </button>
         </form>
       </div>
     </div>
 
     <div class="modal" id="new-card">
-      <div class="overlay" id="new-card-overlay"></div>
       <div class="modal__container">
         <form class="modal__form">
           <button
@@ -131,7 +135,6 @@
     </div>
 
     <div class="modal" id="image_pop-up">
-      <div class="overlay" id="image_pop-up-overlay"></div>
       <div class="modal__view-image">
         <button
           class="modal__image-close-button"

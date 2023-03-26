@@ -5,9 +5,6 @@ export default class PopupWithImage extends Popup {
     super({ popupSelector });
     this._image = this._popupElement.querySelector('.modal__image');
     this._title = this._popupElement.querySelector('.modal__image-title');
-    this._imagePopup = document.querySelector('#image_pop-up');
-    this._link = link;
-    this._name - name;
   }
 
   open(name, link) {
@@ -15,5 +12,23 @@ export default class PopupWithImage extends Popup {
     this._image.alt = name;
     this._title.textContent = name;
     super.open();
+  }
+
+  close() {
+    super.close();
+  }
+
+  handleOverlay() {
+    super.handleOverlay(event);
+  }
+
+  setEventListener() {
+    this._popupElement
+      .querySelector('.modal__image-close-button')
+      .addEventListener('click', () => this.close());
+
+    document.addEventListener('mousedown', (event) =>
+      this.handleOverlay(event)
+    );
   }
 }
