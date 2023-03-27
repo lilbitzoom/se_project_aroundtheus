@@ -186,6 +186,10 @@
     left: 235px;
   }
 
+  #image_pop-up_close_button {
+    left: 240px;
+  }
+
   .modal__container {
     width: 282px;
     height: 322px;
