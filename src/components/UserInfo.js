@@ -5,16 +5,13 @@ export default class UserInfo {
   }
 
   getUserInfo = () => {
-    console.log(description);
     return {
       name: this._profileName.textContent,
       description: this._profileJob.textContent,
     };
   };
 
-  setUserInfo(name, description) {
-    console.log(name);
-    console.log(description);
+  setUserInfo({ name, description }) {
     this._profileName.textContent = name;
     this._profileJob.textContent = description;
   }

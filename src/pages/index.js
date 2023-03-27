@@ -34,12 +34,12 @@ const addFormValidator = new FormValidator(validationSettings, cardAddForm);
 addFormValidator.enableValidation();
 
 //Calling UserInfo for profile editor
-const userInfo = new UserInfo({ name: '#name', description: '#description' });
+const userInfo = new UserInfo({
+  name: '.profile__name',
+  description: '.profile__subheader',
+});
 
 //Profile Editor Popup
-
-//Profile Editor Close
-profileEditorPopup.setEventListener();
 
 //Image Popup
 const cardImagePopup = new PopupWithImage({ popupSelector: '#image_pop-up' });
@@ -47,8 +47,8 @@ cardImagePopup.setEventListener();
 
 //Takes info from initialCards and creates cards
 const createCard = (item) => {
-  const card = new Card(item, '#card', (name, link) => {
-    cardImagePopup.open(name, link);
+  const card = new Card(item, '#card', (title, link) => {
+    cardImagePopup.open(title, link);
   });
 
   return card.getView();
@@ -75,7 +75,7 @@ cardAddButton.addEventListener('click', () => {
 
 //Profile Editor
 profileEditButton.addEventListener('click', () => {
-  userInfo.getUserInfo();
+  profileEditorPopup.setInputValues(userInfo.getUserInfo());
   profileEditorPopup.open();
 });
 
@@ -85,34 +85,14 @@ const profileEditorPopup = new PopupWithForm({
     userInfo.setUserInfo(data);
   },
 });
-/*
-// Function to add a new card based off of new card form
-cardAddForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const name = e.target.title.value;
-  const link = e.target.link.value;
 
-  newCardPopup.close(modalCard);
-  const data = { name, link };
-  renderedCardItems.addItem(createCard(data));
-
-  cardAddForm.reset();
-  addFormValidator.disableSubmitButton();
-});
-
-const newCardAddForms = new PopupWithForm({
-  popupSelector: newCardPopup,
-  handleFormSubmit: (data) => {
-    cardListEl.addItem(createCard(data));
-  },
-});
-*/
+//Profile Editor Close
+profileEditorPopup.setEventListener();
 
 //New Card Popup
 const newCardPopup = new PopupWithForm({
   popupSelector: '#new-card',
   handleFormSubmit: (data) => {
-    console.log(data);
     renderedCardItems.addItem(createCard(data));
     addFormValidator.disableSubmitButton();
   },
