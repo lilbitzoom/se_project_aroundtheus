@@ -54,6 +54,7 @@ renderedCardItems.renderItems();
 
 //Open Popup for edit and new card button
 cardAddButton.addEventListener('click', () => {
+  addFormValidator.disableSubmitButton();
   newCardPopup.open();
 });
 
@@ -84,7 +85,6 @@ const newCardPopup = new PopupWithForm({
   popupSelector: '#new-card',
   handleFormSubmit: (data) => {
     renderedCardItems.addItem(createCard(data));
-    addFormValidator.disableSubmitButton();
   },
 });
 

@@ -15,12 +15,12 @@ class Popup {
     document.removeEventListener('keyup', this._handleEscClose);
   }
 
-  _handleEscClose(event) {
+  _handleEscClose = (event) => {
     const escapeKey = 27;
     if (event.keyCode === escapeKey) {
       this.close();
     }
-  }
+  };
 
   handleOverlay(event) {
     if (event.target.classList.contains('modal_opened')) {
@@ -33,7 +33,7 @@ class Popup {
       .querySelector('.modal__close-button')
       .addEventListener('click', () => this.close());
 
-    document.addEventListener('mousedown', (event) =>
+    this._popupElement.addEventListener('mousedown', (event) =>
       this.handleOverlay(event)
     );
   }

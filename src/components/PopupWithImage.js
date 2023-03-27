@@ -13,22 +13,4 @@ export default class PopupWithImage extends Popup {
     this._title.textContent = name;
     super.open();
   }
-
-  close() {
-    super.close();
-  }
-
-  handleOverlay() {
-    super.handleOverlay(event);
-  }
-
-  setEventListener() {
-    this._popupElement
-      .querySelector('.modal__image-close-button')
-      .addEventListener('click', () => this.close());
-
-    document.addEventListener('mousedown', (event) =>
-      this.handleOverlay(event)
-    );
-  }
 }
