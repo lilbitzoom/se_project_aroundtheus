@@ -1,5 +1,4 @@
 import FormValidator from '../components/FormValidator.js';
-import Popup from '../components/Popup.js';
 import UserInfo from '../components/UserInfo.js';
 import Section from '../components/Section.js';
 import './index.css';
@@ -9,12 +8,9 @@ import {
   profileEditForm,
   profileEditButton,
   cardAddForm,
-  modalCard,
   cardListEl,
   initialCards,
   validationSettings,
-  profileName,
-  profileJob,
 } from '../utils/constants.js';
 
 import Card from '../components/Card.js';
@@ -32,18 +28,6 @@ editFormValidator.enableValidation();
 const addFormValidator = new FormValidator(validationSettings, cardAddForm);
 
 addFormValidator.enableValidation();
-
-//Calling UserInfo for profile editor
-const userInfo = new UserInfo({
-  name: '.profile__name',
-  description: '.profile__subheader',
-});
-
-//Profile Editor Popup
-
-//Image Popup
-const cardImagePopup = new PopupWithImage({ popupSelector: '#image_pop-up' });
-cardImagePopup.setEventListener();
 
 //Takes info from initialCards and creates cards
 const createCard = (item) => {
@@ -73,6 +57,12 @@ cardAddButton.addEventListener('click', () => {
   newCardPopup.open();
 });
 
+//Calling UserInfo for profile editor
+const userInfo = new UserInfo({
+  name: '.profile__name',
+  description: '.profile__subheader',
+});
+
 //Profile Editor
 profileEditButton.addEventListener('click', () => {
   profileEditorPopup.setInputValues(userInfo.getUserInfo());
@@ -100,3 +90,7 @@ const newCardPopup = new PopupWithForm({
 
 //New Card Close
 newCardPopup.setEventListener();
+
+//Image Popup
+const cardImagePopup = new PopupWithImage({ popupSelector: '#image_pop-up' });
+cardImagePopup.setEventListener();
