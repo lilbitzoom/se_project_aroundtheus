@@ -6,25 +6,13 @@ class Popup {
   open() {
     this._popupElement.classList.add('modal_opened');
 
-    document.addEventListener(
-      'keyup',
-      (evt) => {
-        this._handleEscClose(evt);
-      },
-      true
-    );
+    document.addEventListener('keyup', this._handleEscClose);
   }
 
   close() {
     this._popupElement.classList.remove('modal_opened');
 
-    document.removeEventListener(
-      'keyup',
-      (evt) => {
-        this._handleEscClose(evt);
-      },
-      true
-    );
+    document.removeEventListener('keyup', this._handleEscClose);
   }
 
   _handleEscClose(event) {
