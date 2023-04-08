@@ -24,6 +24,7 @@
           class="profile__photo"
           src="<%=require('./images/jacques-cousteau.svg')%>"
           alt="profile-photo"
+          id="profile-picture"
         />
         <div class="profile__description">
           <div class="profile__title">
@@ -105,8 +106,8 @@
             <input
               class="modal__input modal__input_text_name"
               type="text"
-              id="title"
-              name="title"
+              id="name"
+              name="name"
               placeholder="Title"
               minlength="1"
               maxlength="30"
@@ -131,6 +132,39 @@
             class="modal__submit-button"
             type="submit"
             id="new-card-submit-button"
+          >
+            Save
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal" id="change-profile-picture">
+      <div class="modal__container modal_small">
+        <form class="modal__form">
+          <button
+            class="modal__close-button"
+            type="button"
+            id="new_card_close_button"
+          ></button>
+          <h3 class="modal__title">Change Profile Picture</h3>
+
+          <label class="modal__label">
+            <input
+              class="modal__input modal__input_text_profile-picture"
+              id="profile-picture"
+              name="profile-picture"
+              placeholder="Image URL"
+              type="url"
+              required
+            />
+            <span class="modal__input-error" id="link-error"> </span>
+          </label>
+
+          <button
+            class="modal__submit-button"
+            type="submit"
+            id="change-profile-picture-submit-button"
           >
             Save
           </button>

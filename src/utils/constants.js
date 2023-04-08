@@ -1,26 +1,26 @@
 export const initialCards = [
   {
-    title: 'San Francisco',
+    name: 'San Francisco',
     link: 'https://images.unsplash.com/photo-1670808542784-d8a43a98f35a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=768&q=80',
   },
   {
-    title: 'Jurassic Coast',
+    name: 'Jurassic Coast',
     link: 'https://images.unsplash.com/photo-1670793030150-75600982af60?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=670&q=80',
   },
   {
-    title: 'Stavanger',
+    name: 'Stavanger',
     link: 'https://images.unsplash.com/photo-1670500557067-3e2b3dde6625?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
   },
   {
-    title: 'New York',
+    name: 'New York',
     link: 'https://images.unsplash.com/photo-1670477293988-e76875167eec?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
   },
   {
-    title: 'Cottonwood Canyon',
+    name: 'Cottonwood Canyon',
     link: 'https://images.unsplash.com/photo-1670509917257-ea50fa82f5fa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1065&q=80',
   },
   {
-    title: 'Base Harbor',
+    name: 'Base Harbor',
     link: 'https://images.unsplash.com/photo-1670349928042-519fee6e11de?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=770&q=80',
   },
 ];
@@ -44,6 +44,7 @@ export const cardTemplate = document.querySelector('#card').content;
 export const profileContainer = document.querySelector('.profile__description');
 export const profileTitle = profileContainer.querySelector('.profile__title');
 export const modalProfile = document.querySelector('#profile-editor');
+export const profilePicture = document.querySelector('#profile-picture');
 
 export const profileName = profileTitle.querySelector('.profile__name');
 export const profileJob = profileContainer.querySelector('.profile__subheader');

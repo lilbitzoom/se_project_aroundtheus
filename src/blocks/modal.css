@@ -179,6 +179,10 @@
   width: 358px;
 }
 
+.modal_small {
+  height: 272px;
+}
+
 @media screen and (max-width: 596px) {
   .modal__close-button {
     background-size: 26px;

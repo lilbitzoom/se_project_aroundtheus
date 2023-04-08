@@ -2,6 +2,8 @@ import FormValidator from '../components/FormValidator.js';
 import UserInfo from '../components/UserInfo.js';
 import Section from '../components/Section.js';
 import './index.css';
+import Api from '../components/Api.js';
+import PopupWithConfrimation from '../components/PopupWithConfirmation.js';
 
 import {
   cardAddButton,
@@ -11,6 +13,7 @@ import {
   cardListEl,
   initialCards,
   validationSettings,
+  profilePicture,
 } from '../utils/constants.js';
 
 import Card from '../components/Card.js';
@@ -31,17 +34,29 @@ addFormValidator.enableValidation();
 
 //Takes info from initialCards and creates cards
 const createCard = (item) => {
-  const card = new Card(item, '#card', (title, link) => {
-    cardImagePopup.open(title, link);
+  const card = new Card(item, '#card', (name, link) => {
+    cardImagePopup.open(name, link);
   });
 
   return card.getView();
 };
+//New API stuff
+
+const api = new Api({
+  baseUrl: 'https://around.nomoreparties.co/v1/group-12/',
+  headers: {
+    authorization: 'b7c085b1-2aaa-4c48-99ad-8e6ce22f5717',
+    'Content-Type': 'application/json',
+  },
+});
 
 //Renders card on page
 const renderedCardItems = new Section(
   {
-    items: initialCards,
+    items: api.getInitialCards().then((data) => {
+      data;
+      console.log(data);
+    }),
     renderer: (data) => {
       renderedCardItems.addItem(createCard(data));
     },
@@ -90,6 +105,20 @@ const newCardPopup = new PopupWithForm({
 
 //New Card Close
 newCardPopup.setEventListener();
+
+//Change Profile Picture Popup
+profilePicture.addEventListener('click', () => {
+  changeProfilePicturePopup.open();
+});
+
+const changeProfilePicturePopup = new PopupWithForm({
+  popupSelector: '#change-profile-picture',
+  handleFormSubmit: (data) => {
+    renderedCardItems.addItem(createCard(data));
+  },
+});
+// Change Profile Picture Close
+changeProfilePicturePopup.setEventListener();
 
 //Image Popup
 const cardImagePopup = new PopupWithImage({ popupSelector: '#image_pop-up' });

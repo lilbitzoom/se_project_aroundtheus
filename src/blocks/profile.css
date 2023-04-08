@@ -21,6 +21,12 @@
   max-height: 120px;
 }
 
+.profile__image-container:hover {
+  width: 120px;
+  height: 130px;
+  background: red;
+}
+
 .profile__title {
   display: flex;
   align-items: center;
