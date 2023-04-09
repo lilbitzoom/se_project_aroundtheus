@@ -11,7 +11,6 @@ import {
   profileEditButton,
   cardAddForm,
   cardListEl,
-  initialCards,
   validationSettings,
   profilePicture,
 } from '../utils/constants.js';
@@ -32,14 +31,6 @@ const addFormValidator = new FormValidator(validationSettings, cardAddForm);
 
 addFormValidator.enableValidation();
 
-//Takes info from initialCards and creates cards
-const createCard = (item) => {
-  const card = new Card(item, '#card', (name, link) => {
-    cardImagePopup.open(name, link);
-  });
-
-  return card.getView();
-};
 //New API stuff
 
 const api = new Api({
@@ -50,22 +41,31 @@ const api = new Api({
   },
 });
 
-//Renders card on page
-const renderedCardItems = new Section(
-  {
-    items: api.getInitialCards().then((data) => {
-      data;
-      console.log(data);
-    }),
-    renderer: (data) => {
-      renderedCardItems.addItem(createCard(data));
+//Takes info from initialCards and creates cards
+const createCard = (item) => {
+  const card = new Card(item, '#card', (name, link) => {
+    cardImagePopup.open(name, link);
+  });
+
+  return card.getView();
+};
+
+let renderedCardItems;
+
+api.getInitialCards().then((data) => {
+  //Renders card on page
+  renderedCardItems = new Section(
+    {
+      items: data,
+      renderer: (data) => {
+        renderedCardItems.addItem(createCard(data));
+      },
     },
-  },
 
-  cardListEl
-);
-
-renderedCardItems.renderItems();
+    cardListEl
+  );
+  renderedCardItems.renderItems();
+});
 
 //Open Popup for edit and new card button
 cardAddButton.addEventListener('click', () => {
