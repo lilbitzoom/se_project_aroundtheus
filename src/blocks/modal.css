@@ -179,8 +179,12 @@
   width: 358px;
 }
 
-.modal_small {
+.modal__medium {
   height: 272px;
+}
+
+.modal__small {
+  height: 181px;
 }
 
 @media screen and (max-width: 596px) {

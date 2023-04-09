@@ -12,14 +12,18 @@ import {
   cardAddForm,
   cardListEl,
   validationSettings,
+  profileJob,
+  profileName,
   profilePicture,
+  changeProfilePicture,
+  profilePictureEditButton,
 } from '../utils/constants.js';
 
 import Card from '../components/Card.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 
-// New Class Inserts
+// Popup Form Validators
 const editFormValidator = new FormValidator(
   validationSettings,
   profileEditForm
@@ -31,7 +35,14 @@ const addFormValidator = new FormValidator(validationSettings, cardAddForm);
 
 addFormValidator.enableValidation();
 
-//New API stuff
+const profilePictureFormValidator = new FormValidator(
+  validationSettings,
+  changeProfilePicture
+);
+
+profilePictureFormValidator.enableValidation();
+
+//API server Info
 
 const api = new Api({
   baseUrl: 'https://around.nomoreparties.co/v1/group-12/',
@@ -50,10 +61,10 @@ const createCard = (item) => {
   return card.getView();
 };
 
+//Renders card on page
 let renderedCardItems;
 
 api.getInitialCards().then((data) => {
-  //Renders card on page
   renderedCardItems = new Section(
     {
       items: data,
@@ -73,7 +84,43 @@ cardAddButton.addEventListener('click', () => {
   newCardPopup.open();
 });
 
-//Calling UserInfo for profile editor
+//New Card Popup
+const newCardPopup = new PopupWithForm({
+  popupSelector: '#new-card',
+  handleFormSubmit: (data) => {
+    renderedCardItems.addItem(createCard(data));
+  },
+});
+
+//New Card Close
+newCardPopup.setEventListener();
+
+//Change Profile Picture Popup
+profilePictureEditButton.addEventListener('click', () => {
+  changeProfilePicturePopup.open();
+});
+
+const changeProfilePicturePopup = new PopupWithForm({
+  popupSelector: '#change-profile-picture',
+  handleFormSubmit: (data) => {
+    userInfo.setUserInfo(data);
+  },
+});
+// Change Profile Picture Close
+changeProfilePicturePopup.setEventListener();
+
+//Image Popup
+const cardImagePopup = new PopupWithImage({ popupSelector: '#image_pop-up' });
+cardImagePopup.setEventListener();
+
+//User Info from Server and putting into the HTML
+
+api.getUserInfo().then((data) => {
+  profileName.textContent = data.name;
+  profileJob.textContent = data.about;
+});
+
+//Calling UserInfo for profile editor(HTML)
 const userInfo = new UserInfo({
   name: '.profile__name',
   description: '.profile__subheader',
@@ -93,33 +140,12 @@ const profileEditorPopup = new PopupWithForm({
 });
 
 //Profile Editor Close
-profileEditorPopup.setEventListener();
-
-//New Card Popup
-const newCardPopup = new PopupWithForm({
-  popupSelector: '#new-card',
-  handleFormSubmit: (data) => {
-    renderedCardItems.addItem(createCard(data));
-  },
-});
-
-//New Card Close
-newCardPopup.setEventListener();
-
-//Change Profile Picture Popup
-profilePicture.addEventListener('click', () => {
-  changeProfilePicturePopup.open();
-});
-
-const changeProfilePicturePopup = new PopupWithForm({
-  popupSelector: '#change-profile-picture',
-  handleFormSubmit: (data) => {
-    renderedCardItems.addItem(createCard(data));
-  },
-});
-// Change Profile Picture Close
-changeProfilePicturePopup.setEventListener();
-
-//Image Popup
-const cardImagePopup = new PopupWithImage({ popupSelector: '#image_pop-up' });
-cardImagePopup.setEventListener();
+api
+  .updateProfileInfo({
+    name: profileName.textContent,
+    about: profileJob.textContent,
+  })
+  .then((data) => {
+    console.log(data);
+    profileEditorPopup.setEventListener();
+  });

@@ -20,18 +20,25 @@
 
     <main>
       <section class="profile">
-        <img
-          class="profile__photo"
-          src="<%=require('./images/jacques-cousteau.svg')%>"
-          alt="profile-photo"
-          id="profile-picture"
-        />
+        <div class="profile__photo-container">
+          <img
+            class="profile__photo"
+            src="<%=require('./images/jacques-cousteau.svg')%>"
+            alt="profile-photo"
+            id="profile-picture"
+          />
+          <img
+            class="profile__picture-edit"
+            src="<%=require('./images/edit.svg')%>"
+            alt="edit-icon"
+          />
+        </div>
         <div class="profile__description">
           <div class="profile__title">
-            <h1 class="profile__name">Jacques Cousteau</h1>
+            <h1 class="profile__name"></h1>
             <button class="profile__edit-button" type="button"></button>
           </div>
-          <p class="profile__subheader">Explorer</p>
+          <p class="profile__subheader">/p></p>
         </div>
 
         <button class="profile__add-card-button" type="button"></button>
@@ -59,7 +66,7 @@
             <input
               class="modal__input modal__input_text_name"
               type="text"
-              id="name"
+              id="profile_name"
               name="name"
               placeholder="Name"
               minlength="2"
@@ -140,7 +147,7 @@
     </div>
 
     <div class="modal" id="change-profile-picture">
-      <div class="modal__container modal_small">
+      <div class="modal__container modal__medium">
         <form class="modal__form">
           <button
             class="modal__close-button"
@@ -172,6 +179,27 @@
       </div>
     </div>
 
+    <div class="modal" id="delete-card">
+      <div class="modal__container modal__small">
+        <form class="modal__form">
+          <button
+            class="modal__close-button"
+            type="button"
+            id="delete-card-close-button"
+          ></button>
+          <h3 class="modal__title">Are you sure?</h3>
+
+          <button
+            class="modal__submit-button"
+            type="submit"
+            id="delete-card-yes-button"
+          >
+            Yes
+          </button>
+        </form>
+      </div>
+    </div>
+
     <div class="modal" id="image_pop-up">
       <div class="modal__view-image">
         <button
@@ -192,7 +220,10 @@
         <button class="card__delete-button"></button>
         <div class="card__content">
           <h2 class="card__title"></h2>
-          <button class="card__like-button" type="button"></button>
+          <div class="card__Like-button_container">
+            <button class="card__like-button" type="button"></button>
+            <p class="card__like-count">0</p>
+          </div>
         </div>
       </li>
     </template>

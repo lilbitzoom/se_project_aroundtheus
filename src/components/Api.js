@@ -12,14 +12,14 @@ export default class Api {
   }
 
   getUserInfo() {
-    return fetch(`${this._baseUrl}user/me`, {
+    return fetch(`${this._baseUrl}users/me`, {
       method: 'GET',
       headers: this._token,
     }).then((res) => this._checkResponse(res));
   }
 
   getInitialCards() {
-    return fetch(`${this._baseUrl}cards/`, {
+    return fetch(`${this._baseUrl}cards`, {
       method: 'GET',
       headers: this._token,
     }).then((res) => this._checkResponse(res));
@@ -29,25 +29,32 @@ export default class Api {
     return Promise.all([this.getUserInfo(), this.getInitialCards()]);
   }
 
-  updateProfileInfo(name, description) {
-    return fetch(`${this._baseUrl}user/me`, {
+  updateProfileInfo({ name, about }) {
+    return fetch(`${this._baseUrl}users/me`, {
       method: 'PATCH',
       headers: this._token,
       body: JSON.stringify({
         name,
-        description,
+        about,
       }),
     }).then((res) => this._checkResponse(res));
   }
 
   addNewCard(name, link) {
-    return fetch(`${this._baseUrl}card/`, {
-      method: 'PATCH',
+    return fetch(`${this._baseUrl}cards`, {
+      method: 'POST',
       headers: this._token,
       body: JSON.stringify({
         name,
         link,
       }),
     }).then((res) => this._checkResponse(res));
+  }
+
+  deleteCard() {
+    return fetch(`${this._baseUrl}cards/cardId`, {
+      method: 'DELETE',
+      headers: this._token,
+    });
   }
 }
