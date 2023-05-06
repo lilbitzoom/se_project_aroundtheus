@@ -103,7 +103,7 @@ profilePictureEditButton.addEventListener('click', () => {
 const changeProfilePicturePopup = new PopupWithForm({
   popupSelector: '#change-profile-picture',
   handleFormSubmit: (data) => {
-    userInfo.setUserInfo(data);
+    api.updateProfilePicture(data);
   },
 });
 // Change Profile Picture Close
@@ -118,6 +118,7 @@ cardImagePopup.setEventListener();
 api.getUserInfo().then((data) => {
   profileName.textContent = data.name;
   profileJob.textContent = data.about;
+  profilePicture.src = data.avatar;
 });
 
 //Calling UserInfo for profile editor(HTML)
@@ -131,21 +132,16 @@ profileEditButton.addEventListener('click', () => {
   profileEditorPopup.setInputValues(userInfo.getUserInfo());
   profileEditorPopup.open();
 });
-
+//**  THIS STILL ISN'T WORKING PROPERLY TO CHANGE WHEN THE SUBMIT BUTTON IS CLICKED
 const profileEditorPopup = new PopupWithForm({
   popupSelector: '#profile-editor',
-  handleFormSubmit: (data) => {
-    userInfo.setUserInfo(data);
+  handleFormSubmit: ({ name, about }) => {
+    api.updateProfileInfo({
+      name: profileName.textContent,
+      about: profileJob.textContent,
+    });
   },
 });
 
 //Profile Editor Close
-api
-  .updateProfileInfo({
-    name: profileName.textContent,
-    about: profileJob.textContent,
-  })
-  .then((data) => {
-    console.log(data);
-    profileEditorPopup.setEventListener();
-  });
+profileEditorPopup.setEventListener();

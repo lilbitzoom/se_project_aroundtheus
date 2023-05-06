@@ -29,13 +29,23 @@ export default class Api {
     return Promise.all([this.getUserInfo(), this.getInitialCards()]);
   }
 
-  updateProfileInfo({ name, about }) {
+  updateProfileInfo(data) {
     return fetch(`${this._baseUrl}users/me`, {
       method: 'PATCH',
       headers: this._token,
       body: JSON.stringify({
-        name,
-        about,
+        name: 'Katelin Hogan',
+        about: 'Aspiring Software Engineer',
+      }),
+    }).then((res) => this._checkResponse(res));
+  }
+
+  updateProfilePicture(url) {
+    return fetch(`${this._baseUrl}users/me`, {
+      method: 'PATCH',
+      headers: this._token,
+      body: JSON.stringify({
+        avatar,
       }),
     }).then((res) => this._checkResponse(res));
   }
@@ -55,6 +65,12 @@ export default class Api {
     return fetch(`${this._baseUrl}cards/cardId`, {
       method: 'DELETE',
       headers: this._token,
+    });
+  }
+
+  getUserbyId(id) {
+    return fetch(`${this.baseUrl}${id}`, {
+      method: 'GET',
     });
   }
 }
