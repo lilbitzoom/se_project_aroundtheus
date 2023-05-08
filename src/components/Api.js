@@ -34,8 +34,8 @@ export default class Api {
       method: 'PATCH',
       headers: this._token,
       body: JSON.stringify({
-        name: 'Katelin Hogan',
-        about: 'Aspiring Software Engineer',
+        name: data.name,
+        about: data.description,
       }),
     }).then((res) => this._checkResponse(res));
   }
@@ -58,7 +58,9 @@ export default class Api {
         name,
         link,
       }),
-    }).then((res) => this._checkResponse(res));
+    }).then((res) => {
+      this._checkResponse(res);
+    });
   }
 
   deleteCard() {

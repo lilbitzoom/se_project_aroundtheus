@@ -88,7 +88,11 @@ cardAddButton.addEventListener('click', () => {
 const newCardPopup = new PopupWithForm({
   popupSelector: '#new-card',
   handleFormSubmit: (data) => {
-    renderedCardItems.addItem(createCard(data));
+    console.log(data);
+    api.addNewCard(
+      'hi',
+      `https://images.unsplash.com/photo-1542737579-ba0a385f3b84?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8bG9zJTIwYW5nZWxlc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60`
+    );
   },
 });
 
@@ -132,16 +136,26 @@ profileEditButton.addEventListener('click', () => {
   profileEditorPopup.setInputValues(userInfo.getUserInfo());
   profileEditorPopup.open();
 });
+
 //**  THIS STILL ISN'T WORKING PROPERLY TO CHANGE WHEN THE SUBMIT BUTTON IS CLICKED
 const profileEditorPopup = new PopupWithForm({
   popupSelector: '#profile-editor',
-  handleFormSubmit: ({ name, about }) => {
+  handleFormSubmit: (data) => {
+    console.log(data);
     api.updateProfileInfo({
-      name: profileName.textContent,
-      about: profileJob.textContent,
+      name: data.name,
+      about: data.description,
     });
   },
 });
 
 //Profile Editor Close
 profileEditorPopup.setEventListener();
+/*
+api
+  .addNewCard(
+    'hi',
+    `https://images.unsplash.com/photo-1542737579-ba0a385f3b84?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8bG9zJTIwYW5nZWxlc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60`
+  )
+  .then((data) => console.log(data));
+*/
