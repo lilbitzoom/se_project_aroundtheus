@@ -17,6 +17,7 @@ import {
   profilePicture,
   changeProfilePicture,
   profilePictureEditButton,
+  modalDeleteCard,
 } from '../utils/constants.js';
 
 import Card from '../components/Card.js';
@@ -54,12 +55,23 @@ const api = new Api({
 
 //Takes info from initialCards and creates cards
 const createCard = (item) => {
-  const card = new Card(item, '#card', (name, link) => {
-    cardImagePopup.open(name, link);
-  });
+  const card = new Card(
+    item,
+    '#card',
+    (name, link) => {
+      cardImagePopup.open(name, link);
+    }
+    //() => {DeleteCardPopup.open();}
+  );
 
   return card.getView();
 };
+
+//Delete Card Popup
+
+const DeleteCardPopup = new PopupWithConfrimation({
+  popupSelector: '#delete-card',
+});
 
 //Renders card on page
 let renderedCardItems;
@@ -88,11 +100,7 @@ cardAddButton.addEventListener('click', () => {
 const newCardPopup = new PopupWithForm({
   popupSelector: '#new-card',
   handleFormSubmit: (data) => {
-    console.log(data);
-    api.addNewCard(
-      'hi',
-      `https://images.unsplash.com/photo-1542737579-ba0a385f3b84?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8bG9zJTIwYW5nZWxlc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60`
-    );
+    api.addNewCard(data.name, data.link);
   },
 });
 
@@ -107,7 +115,7 @@ profilePictureEditButton.addEventListener('click', () => {
 const changeProfilePicturePopup = new PopupWithForm({
   popupSelector: '#change-profile-picture',
   handleFormSubmit: (data) => {
-    api.updateProfilePicture(data);
+    api.updateProfilePicture(data.src);
   },
 });
 // Change Profile Picture Close
@@ -141,21 +149,13 @@ profileEditButton.addEventListener('click', () => {
 const profileEditorPopup = new PopupWithForm({
   popupSelector: '#profile-editor',
   handleFormSubmit: (data) => {
-    console.log(data);
-    api.updateProfileInfo({
-      name: data.name,
-      about: data.description,
-    });
+    api.updateProfileInfo(data.name, data.description);
   },
 });
 
 //Profile Editor Close
 profileEditorPopup.setEventListener();
-/*
-api
-  .addNewCard(
-    'hi',
-    `https://images.unsplash.com/photo-1542737579-ba0a385f3b84?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8bG9zJTIwYW5nZWxlc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60`
-  )
-  .then((data) => console.log(data));
-*/
+
+//api.getLikeCount().then((data) => {console.log(data);});
+
+//api.getUserbyId().then((data) => console.log(data));

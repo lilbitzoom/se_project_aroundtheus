@@ -240,4 +240,8 @@
   .modal__error_visible {
     width: 238px;
   }
+
+  .modal__medium {
+    height: 255px;
+  }
 }

@@ -29,13 +29,13 @@ export default class Api {
     return Promise.all([this.getUserInfo(), this.getInitialCards()]);
   }
 
-  updateProfileInfo(data) {
+  updateProfileInfo(name, about) {
     return fetch(`${this._baseUrl}users/me`, {
       method: 'PATCH',
       headers: this._token,
       body: JSON.stringify({
-        name: data.name,
-        about: data.description,
+        name,
+        about,
       }),
     }).then((res) => this._checkResponse(res));
   }
@@ -45,7 +45,7 @@ export default class Api {
       method: 'PATCH',
       headers: this._token,
       body: JSON.stringify({
-        avatar,
+        url,
       }),
     }).then((res) => this._checkResponse(res));
   }
@@ -64,7 +64,7 @@ export default class Api {
   }
 
   deleteCard() {
-    return fetch(`${this._baseUrl}cards/cardId`, {
+    return fetch(`${this._baseUrl}cards`, {
       method: 'DELETE',
       headers: this._token,
     });
@@ -73,6 +73,30 @@ export default class Api {
   getUserbyId(id) {
     return fetch(`${this.baseUrl}${id}`, {
       method: 'GET',
+    });
+  }
+
+  addLikeCount(like) {
+    return fetch(`${this._baseUrl}cards/likes/cardId`, {
+      method: 'POST',
+      headers: this._token,
+      body: JSON.stringify({
+        like,
+      }),
+    }).then((res) => {
+      this._checkResponse(res);
+    });
+  }
+
+  deleteLikeCount() {
+    return fetch(`${this._baseUrl}cards/likes/cardId`, {
+      method: 'DELETE',
+      headers: this._token,
+      body: JSON.stringify({
+        like,
+      }),
+    }).then((res) => {
+      this._checkResponse(res);
     });
   }
 }

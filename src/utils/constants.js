@@ -60,3 +60,5 @@ export const changeProfilePicture =
 export const profilePictureEditButton = document.querySelector(
   '.profile__picture-edit'
 );
+
+export const modalDeleteCard = document.querySelector('#delete-card');

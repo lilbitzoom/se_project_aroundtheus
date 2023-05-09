@@ -4,4 +4,8 @@ export default class PopupWithConfrimation extends Popup {
   constructor(popupSelector) {
     super({ popupSelector });
   }
+
+  open() {
+    super.open();
+  }
 }
